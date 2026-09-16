@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wilson County Health Inspection Tracker | Royal Blue Analytics</title>
+<style>
+  :root{
+    --brand:#253B8E; --brand-dark:#1B2B6B; --brand-soft:rgba(37,59,142,.08);
+    --bg:#F0F2F5; --card:#FFFFFF; --border:#E3E6EC; --shadow:0 2px 8px rgba(16,24,40,.06);
+    --text:#1A1A1B; --muted:#6B7280; --track:#EEF0F4;
+    --good:#2E7D52; --warn:#B7791F; --bad:#CC0000; --na:#9AA1AD;
+    --bar:#253B8E; --bar-muted:rgba(37,59,142,.22);
+    --radius:12px; --font:'Segoe UI',-apple-system,Helvetica,Arial,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --brand-soft:rgba(143,164,240,.14); --bg:#121418; --card:#1C1F26; --border:#2C3038; --shadow:0 2px 10px rgba(0,0,0,.35);
+      --text:#ECEEF2; --muted:#9AA1AD; --track:#262A32; --good:#4CBF84; --warn:#E0A94A; --bad:#FF6B6B;
+      --bar:#8FA4F0; --bar-muted:rgba(143,164,240,.25);
+    }
+  }
+  :root[data-theme="dark"]{
+    --brand-soft:rgba(143,164,240,.14); --bg:#121418; --card:#1C1F26; --border:#2C3038; --shadow:0 2px 10px rgba(0,0,0,.35);
+    --text:#ECEEF2; --muted:#9AA1AD; --track:#262A32; --good:#4CBF84; --warn:#E0A94A; --bad:#FF6B6B;
+    --bar:#8FA4F0; --bar-muted:rgba(143,164,240,.25);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg)}
+  body{font-family:var(--font);color:var(--text);padding:16px}
+  button,select,input{font-family:inherit}
+  .app{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+
+  /* Header */
+  .hero{background:var(--brand);color:#fff;border-radius:var(--radius);padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .hero h1{font-size:20px;font-weight:700;line-height:1.2}
+  .hero p{font-size:12px;color:rgba(255,255,255,.75);margin-top:3px}
+  .rba{display:flex;align-items:center;gap:8px;text-decoration:none;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:50px;padding:4px 14px 4px 4px}
+  .rba:hover{background:rgba(255,255,255,.18)}
+  .mark{width:28px;height:28px;border-radius:50%;background:#fff;color:var(--brand-dark);font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .rba small{display:block;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+  .rba strong{font-size:12px}
+
+  /* Filters */
+  .filters{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:10px 12px;box-shadow:var(--shadow)}
+  .f-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  .seg{display:flex;gap:4px;background:var(--track);border-radius:50px;padding:3px;overflow-x:auto;scrollbar-width:none;max-width:100%}
+  .seg::-webkit-scrollbar{display:none}
+  .seg button{border:none;background:transparent;color:var(--muted);font-size:12px;font-weight:600;padding:6px 12px;border-radius:50px;cursor:pointer;white-space:nowrap}
+  .seg button.on{background:var(--card);color:var(--brand);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+  :root[data-theme="dark"] .seg button.on{color:#8FA4F0}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .seg button.on{color:#8FA4F0} }
+  .f-group{display:flex;align-items:center;gap:8px;min-width:0;max-width:100%}
+  .f-scope{margin-left:auto;font-size:11px;color:var(--muted)}
+
+  /* KPIs */
+  .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+  .kpi{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:4px}
+  .kpi .l{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+  .kpi .v{font-size:26px;font-weight:700;line-height:1.1}
+  .kpi .s{font-size:11px;font-weight:600;color:var(--muted)}
+  .s.pos{color:var(--good)} .s.neg{color:var(--bad)}
+
+  /* Tabs */
+  .panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+  .tabs{display:flex;border-bottom:1px solid var(--border);padding:0 8px;overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{border:none;background:none;color:var(--muted);font-size:13px;font-weight:600;padding:12px 14px;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+  .tab.on{color:var(--text);border-bottom-color:var(--brand)}
+  .view{display:none;padding:16px}
+  .view.on{display:block}
+
+  /* Overview */
+  .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .box h3{font-size:13px;font-weight:700}
+  .box .sub{font-size:11px;color:var(--muted);margin:2px 0 12px}
+  .cols{display:flex;align-items:flex-end;gap:6px;height:150px;border-bottom:1px solid var(--border)}
+  .col{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+  .col .bar{background:var(--bar);border-radius:4px 4px 0 0;min-height:2px;transition:height .3s}
+  .bar.warn{background:var(--warn)} .bar.bad{background:var(--bad)}
+  .col .val{font-size:11px;font-weight:700;margin-bottom:3px}
+  .xl{display:flex;gap:6px;margin-top:5px}
+  .xl span{flex:1;font-size:10px;color:var(--muted)}
+  .hbars{display:flex;flex-direction:column;gap:9px}
+  .hrow{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) 34px;gap:8px;align-items:center}
+  .hn{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .hn small{display:block;font-size:10px;color:var(--muted)}
+  .ht{height:10px;background:var(--track);border-radius:5px;overflow:hidden}
+  .hf{height:100%;background:var(--bar);border-radius:5px;transition:width .3s}
+  .hf.warn{background:var(--warn)} .hf.bad{background:var(--bad)} .hf.muted{background:var(--bar-muted)}
+  .hv{font-size:12px;font-weight:700}
+  .empty{font-size:12px;color:var(--muted);padding:8px 0}
+
+  /* Map */
+  .map-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .legend{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--muted)}
+  .legend span{display:flex;align-items:center;white-space:nowrap}
+  .map-wrap{position:relative;border-radius:8px;overflow:hidden;border:1px solid var(--border)}
+  #map{height:420px;width:100%;background:var(--track)}
+  .map-status{position:absolute;left:10px;bottom:10px;z-index:500;background:var(--card);color:var(--muted);font-size:11px;padding:6px 10px;border-radius:6px;box-shadow:var(--shadow);max-width:calc(100% - 20px)}
+  .map-status:empty{display:none}
+  .map-status.full{inset:0;max-width:none;border-radius:0;display:flex;align-items:center;padding:24px;font-size:12px;line-height:1.5;background:var(--track);box-shadow:none}
+  .leaflet-popup-content{font-family:var(--font);font-size:12px;margin:12px 14px}
+  .pop-addr{font-size:11px;color:#6B7280;margin-bottom:6px}
+  .pop-row{display:flex;justify-content:space-between;gap:12px;padding:3px 0;border-top:1px solid #eee}
+  .pop-row b{white-space:nowrap}
+  .pop-link{display:inline-block;margin-top:8px;font-size:11px;color:#253B8E}
+
+  /* Table */
+  .search{width:100%;flex-shrink:0;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:8px;padding:9px 12px;font-size:13px;margin-bottom:10px}
+  .table-wrap{height:370px;overflow:auto;border:1px solid var(--border);border-radius:8px}
+  table{width:100%;border-collapse:collapse;min-width:420px}
+  th{background:var(--brand);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;text-align:left;padding:9px 12px;position:sticky;top:0;cursor:pointer;white-space:nowrap;z-index:1}
+  td{font-size:12px;padding:8px 12px;border-bottom:1px solid var(--border);white-space:nowrap}
+  td.m{color:var(--muted)}
+  .addr{font-size:10px;color:var(--muted)}
+  td a{color:inherit;text-decoration:none;border-bottom:1px dotted var(--muted)}
+  .count{font-size:11px;color:var(--muted);margin-top:8px}
+  .dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px}
+  .d-good{background:var(--good)} .d-warn{background:var(--warn)} .d-bad{background:var(--bad)} .d-na{background:var(--na)}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+  .about-grid h4{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px}
+  .about-grid p,.about-grid li{font-size:12px;line-height:1.5}
+  .about-grid ul{padding-left:16px;display:flex;flex-direction:column;gap:4px}
+
+  body.loading .kpi .v,body.loading .kpi .s{color:transparent;background:var(--track);border-radius:6px}
+  body.loading .kpi .v{width:60px;height:29px} body.loading .kpi .s{width:120px;height:13px}
+  .pad{padding:16px}
+  .bottom{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:12px}
+  .bottom .panel{display:flex;flex-direction:column}
+  .bt{font-size:13px;font-weight:700}
+  .sub{font-size:11px;color:var(--muted);margin-top:2px}
+  .box .sub{margin:2px 0 12px}
+  tbody tr{cursor:pointer}
+  tbody tr:hover td{background:var(--brand-soft)}
+  details.credit summary{cursor:pointer;font-weight:600;width:max-content}
+  details.credit p{margin-top:6px;max-width:900px}
+
+  /* Footer */
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;box-shadow:var(--shadow)}
+  .foot .who{display:flex;align-items:center;gap:10px}
+  .foot .mark{background:var(--brand);color:#fff;width:32px;height:32px}
+  .foot .t1{font-size:13px;font-weight:700}
+  .foot .t2{font-size:11px;color:var(--muted)}
+  .links{display:flex;gap:6px;flex-wrap:wrap}
+  .links a{font-size:12px;font-weight:600;text-decoration:none;color:var(--text);border:1px solid var(--border);border-radius:50px;padding:6px 12px}
+  .links a:hover{background:var(--brand-soft)}
+  .links a.cta{background:var(--brand);border-color:var(--brand);color:#fff}
+  .credit{font-size:10px;color:var(--muted);line-height:1.5}
+
+  @media (max-width:860px){
+    body{padding:10px}
+    .grid3,.bottom{grid-template-columns:minmax(0,1fr);gap:22px}
+    .bottom{gap:12px}
+    .table-wrap{height:340px}
+    .kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .f-scope{display:none}
+    .f-group{width:100%}
+    .hero{padding:16px}
+    .hero h1{font-size:18px}
+    #map{height:340px}
+  }
+  /* required styles */
+
+.leaflet-pane,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-tile-container,
+.leaflet-pane > svg,
+.leaflet-pane > canvas,
+.leaflet-zoom-box,
+.leaflet-image-layer,
+.leaflet-layer {
+	position: absolute;
+	left: 0;
+	top: 0;
+	}
+.leaflet-container {
+	overflow: hidden;
+	}
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	        user-select: none;
+	  -webkit-user-drag: none;
+	}
+/* Prevents IE11 from highlighting tiles in blue */
+.leaflet-tile::selection {
+	background: transparent;
+}
+/* Safari renders non-retina tile on retina better with this, but Chrome is worse */
+.leaflet-safari .leaflet-tile {
+	image-rendering: -webkit-optimize-contrast;
+	}
+/* hack that prevents hw layers "stretching" when loading new tiles */
+.leaflet-safari .leaflet-tile-container {
+	width: 1600px;
+	height: 1600px;
+	-webkit-transform-origin: 0 0;
+	}
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	display: block;
+	}
+/* .leaflet-container svg: reset svg max-width decleration shipped in Joomla! (joomla.org) 3.x */
+/* .leaflet-container img: map is broken in FF if you have max-width: 100% on tiles */
+.leaflet-container .leaflet-overlay-pane svg {
+	max-width: none !important;
+	max-height: none !important;
+	}
+.leaflet-container .leaflet-marker-pane img,
+.leaflet-container .leaflet-shadow-pane img,
+.leaflet-container .leaflet-tile-pane img,
+.leaflet-container img.leaflet-image-layer,
+.leaflet-container .leaflet-tile {
+	max-width: none !important;
+	max-height: none !important;
+	width: auto;
+	padding: 0;
+	}
+
+.leaflet-container img.leaflet-tile {
+	/* See: https://bugs.chromium.org/p/chromium/issues/detail?id=600120 */
+	mix-blend-mode: plus-lighter;
+}
+
+.leaflet-container.leaflet-touch-zoom {
+	-ms-touch-action: pan-x pan-y;
+	touch-action: pan-x pan-y;
+	}
+.leaflet-container.leaflet-touch-drag {
+	-ms-touch-action: pinch-zoom;
+	/* Fallback for FF which doesn't support pinch-zoom */
+	touch-action: none;
+	touch-action: pinch-zoom;
+}
+.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
+	-ms-touch-action: none;
+	touch-action: none;
+}
+.leaflet-container {
+	-webkit-tap-highlight-color: transparent;
+}
+.leaflet-container a {
+	-webkit-tap-highlight-color: rgba(51, 181, 229, 0.4);
+}
+.leaflet-tile {
+	filter: inherit;
+	visibility: hidden;
+	}
+.leaflet-tile-loaded {
+	visibility: inherit;
+	}
+.leaflet-zoom-box {
+	width: 0;
+	height: 0;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	z-index: 800;
+	}
+/* workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=888319 */
+.leaflet-overlay-pane svg {
+	-moz-user-select: none;
+	}
+
+.leaflet-pane         { z-index: 400; }
+
+.leaflet-tile-pane    { z-index: 200; }
+.leaflet-overlay-pane { z-index: 400; }
+.leaflet-shadow-pane  { z-index: 500; }
+.leaflet-marker-pane  { z-index: 600; }
+.leaflet-tooltip-pane   { z-index: 650; }
+.leaflet-popup-pane   { z-index: 700; }
+
+.leaflet-map-pane canvas { z-index: 100; }
+.leaflet-map-pane svg    { z-index: 200; }
+
+.leaflet-vml-shape {
+	width: 1px;
+	height: 1px;
+	}
+.lvml {
+	behavior: url(#default#VML);
+	display: inline-block;
+	position: absolute;
+	}
+
+
+/* control positioning */
+
+.leaflet-control {
+	position: relative;
+	z-index: 800;
+	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: auto;
+	}
+.leaflet-top,
+.leaflet-bottom {
+	position: absolute;
+	z-index: 1000;
+	pointer-events: none;
+	}
+.leaflet-top {
+	top: 0;
+	}
+.leaflet-right {
+	right: 0;
+	}
+.leaflet-bottom {
+	bottom: 0;
+	}
+.leaflet-left {
+	left: 0;
+	}
+.leaflet-control {
+	float: left;
+	clear: both;
+	}
+.leaflet-right .leaflet-control {
+	float: right;
+	}
+.leaflet-top .leaflet-control {
+	margin-top: 10px;
+	}
+.leaflet-bottom .leaflet-control {
+	margin-bottom: 10px;
+	}
+.leaflet-left .leaflet-control {
+	margin-left: 10px;
+	}
+.leaflet-right .leaflet-control {
+	margin-right: 10px;
+	}
+
+
+/* zoom and fade animations */
+
+.leaflet-fade-anim .leaflet-popup {
+	opacity: 0;
+	-webkit-transition: opacity 0.2s linear;
+	   -moz-transition: opacity 0.2s linear;
+	        transition: opacity 0.2s linear;
+	}
+.leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
+	opacity: 1;
+	}
+.leaflet-zoom-animated {
+	-webkit-transform-origin: 0 0;
+	    -ms-transform-origin: 0 0;
+	        transform-origin: 0 0;
+	}
+svg.leaflet-zoom-animated {
+	will-change: transform;
+}
+
+.leaflet-zoom-anim .leaflet-zoom-animated {
+	-webkit-transition: -webkit-transform 0.25s cubic-bezier(0,0,0.25,1);
+	   -moz-transition:    -moz-transform 0.25s cubic-bezier(0,0,0.25,1);
+	        transition:         transform 0.25s cubic-bezier(0,0,0.25,1);
+	}
+.leaflet-zoom-anim .leaflet-tile,
+.leaflet-pan-anim .leaflet-tile {
+	-webkit-transition: none;
+	   -moz-transition: none;
+	        transition: none;
+	}
+
+.leaflet-zoom-anim .leaflet-zoom-hide {
+	visibility: hidden;
+	}
+
+
+/* cursors */
+
+.leaflet-interactive {
+	cursor: pointer;
+	}
+.leaflet-grab {
+	cursor: -webkit-grab;
+	cursor:    -moz-grab;
+	cursor:         grab;
+	}
+.leaflet-crosshair,
+.leaflet-crosshair .leaflet-interactive {
+	cursor: crosshair;
+	}
+.leaflet-popup-pane,
+.leaflet-control {
+	cursor: auto;
+	}
+.leaflet-dragging .leaflet-grab,
+.leaflet-dragging .leaflet-grab .leaflet-interactive,
+.leaflet-dragging .leaflet-marker-draggable {
+	cursor: move;
+	cursor: -webkit-grabbing;
+	cursor:    -moz-grabbing;
+	cursor:         grabbing;
+	}
+
+/* marker & overlays interactivity */
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-image-layer,
+.leaflet-pane > svg path,
+.leaflet-tile-container {
+	pointer-events: none;
+	}
+
+.leaflet-marker-icon.leaflet-interactive,
+.leaflet-image-layer.leaflet-interactive,
+.leaflet-pane > svg path.leaflet-interactive,
+svg.leaflet-image-layer.leaflet-interactive path {
+	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: auto;
+	}
+
+/* visual tweaks */
+
+.leaflet-container {
+	background: #ddd;
+	outline-offset: 1px;
+	}
+.leaflet-container a {
+	color: #0078A8;
+	}
+.leaflet-zoom-box {
+	border: 2px dotted #38f;
+	background: rgba(255,255,255,0.5);
+	}
+
+
+/* general typography */
+.leaflet-container {
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-size: 0.75rem;
+	line-height: 1.5;
+	}
+
+
+/* general toolbar styles */
+
+.leaflet-bar {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+	border-radius: 4px;
+	}
+.leaflet-bar a {
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+	width: 26px;
+	height: 26px;
+	line-height: 26px;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+	}
+.leaflet-bar a,
+.leaflet-control-layers-toggle {
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	display: block;
+	}
+.leaflet-bar a:hover,
+.leaflet-bar a:focus {
+	background-color: #f4f4f4;
+	}
+.leaflet-bar a:first-child {
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	}
+.leaflet-bar a:last-child {
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom: none;
+	}
+.leaflet-bar a.leaflet-disabled {
+	cursor: default;
+	background-color: #f4f4f4;
+	color: #bbb;
+	}
+
+.leaflet-touch .leaflet-bar a {
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	}
+.leaflet-touch .leaflet-bar a:first-child {
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	}
+.leaflet-touch .leaflet-bar a:last-child {
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	}
+
+/* zoom control */
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+	font: bold 18px 'Lucida Console', Monaco, monospace;
+	text-indent: 1px;
+	}
+
+.leaflet-touch .leaflet-control-zoom-in, .leaflet-touch .leaflet-control-zoom-out  {
+	font-size: 22px;
+	}
+
+
+/* layers control */
+
+.leaflet-control-layers {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+	background: #fff;
+	border-radius: 5px;
+	}
+.leaflet-control-layers-toggle {
+	background-image: url(images/layers.png);
+	width: 36px;
+	height: 36px;
+	}
+.leaflet-retina .leaflet-control-layers-toggle {
+	background-image: url(images/layers-2x.png);
+	background-size: 26px 26px;
+	}
+.leaflet-touch .leaflet-control-layers-toggle {
+	width: 44px;
+	height: 44px;
+	}
+.leaflet-control-layers .leaflet-control-layers-list,
+.leaflet-control-layers-expanded .leaflet-control-layers-toggle {
+	display: none;
+	}
+.leaflet-control-layers-expanded .leaflet-control-layers-list {
+	display: block;
+	position: relative;
+	}
+.leaflet-control-layers-expanded {
+	padding: 6px 10px 6px 6px;
+	color: #333;
+	background: #fff;
+	}
+.leaflet-control-layers-scrollbar {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding-right: 5px;
+	}
+.leaflet-control-layers-selector {
+	margin-top: 2px;
+	position: relative;
+	top: 1px;
+	}
+.leaflet-control-layers label {
+	display: block;
+	font-size: 13px;
+	font-size: 1.08333em;
+	}
+.leaflet-control-layers-separator {
+	height: 0;
+	border-top: 1px solid #ddd;
+	margin: 5px -10px 5px -6px;
+	}
+
+/* Default icon URLs */
+.leaflet-default-icon-path { /* used only in path-guessing heuristic, see L.Icon.Default */
+	background-image: url(images/marker-icon.png);
+	}
+
+
+/* attribution and scale controls */
+
+.leaflet-container .leaflet-control-attribution {
+	background: #fff;
+	background: rgba(255, 255, 255, 0.8);
+	margin: 0;
+	}
+.leaflet-control-attribution,
+.leaflet-control-scale-line {
+	padding: 0 5px;
+	color: #333;
+	line-height: 1.4;
+	}
+.leaflet-control-attribution a {
+	text-decoration: none;
+	}
+.leaflet-control-attribution a:hover,
+.leaflet-control-attribution a:focus {
+	text-decoration: underline;
+	}
+.leaflet-attribution-flag {
+	display: inline !important;
+	vertical-align: baseline !important;
+	width: 1em;
+	height: 0.6669em;
+	}
+.leaflet-left .leaflet-control-scale {
+	margin-left: 5px;
+	}
+.leaflet-bottom .leaflet-control-scale {
+	margin-bottom: 5px;
+	}
+.leaflet-control-scale-line {
+	border: 2px solid #777;
+	border-top: none;
+	line-height: 1.1;
+	padding: 2px 5px 1px;
+	white-space: nowrap;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	background: rgba(255, 255, 255, 0.8);
+	text-shadow: 1px 1px #fff;
+	}
+.leaflet-control-scale-line:not(:first-child) {
+	border-top: 2px solid #777;
+	border-bottom: none;
+	margin-top: -2px;
+	}
+.leaflet-control-scale-line:not(:first-child):not(:last-child) {
+	border-bottom: 2px solid #777;
+	}
+
+.leaflet-touch .leaflet-control-attribution,
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	box-shadow: none;
+	}
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	border: 2px solid rgba(0,0,0,0.2);
+	background-clip: padding-box;
+	}
+
+
+/* popup */
+
+.leaflet-popup {
+	position: absolute;
+	text-align: center;
+	margin-bottom: 20px;
+	}
+.leaflet-popup-content-wrapper {
+	padding: 1px;
+	text-align: left;
+	border-radius: 12px;
+	}
+.leaflet-popup-content {
+	margin: 13px 24px 13px 20px;
+	line-height: 1.3;
+	font-size: 13px;
+	font-size: 1.08333em;
+	min-height: 1px;
+	}
+.leaflet-popup-content p {
+	margin: 17px 0;
+	margin: 1.3em 0;
+	}
+.leaflet-popup-tip-container {
+	width: 40px;
+	height: 20px;
+	position: absolute;
+	left: 50%;
+	margin-top: -1px;
+	margin-left: -20px;
+	overflow: hidden;
+	pointer-events: none;
+	}
+.leaflet-popup-tip {
+	width: 17px;
+	height: 17px;
+	padding: 1px;
+
+	margin: -10px auto 0;
+	pointer-events: auto;
+
+	-webkit-transform: rotate(45deg);
+	   -moz-transform: rotate(45deg);
+	    -ms-transform: rotate(45deg);
+	        transform: rotate(45deg);
+	}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+	background: white;
+	color: #333;
+	box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+	}
+.leaflet-container a.leaflet-popup-close-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: none;
+	text-align: center;
+	width: 24px;
+	height: 24px;
+	font: 16px/24px Tahoma, Verdana, sans-serif;
+	color: #757575;
+	text-decoration: none;
+	background: transparent;
+	}
+.leaflet-container a.leaflet-popup-close-button:hover,
+.leaflet-container a.leaflet-popup-close-button:focus {
+	color: #585858;
+	}
+.leaflet-popup-scrolled {
+	overflow: auto;
+	}
+
+.leaflet-oldie .leaflet-popup-content-wrapper {
+	-ms-zoom: 1;
+	}
+.leaflet-oldie .leaflet-popup-tip {
+	width: 24px;
+	margin: 0 auto;
+
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)";
+	filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678);
+	}
+
+.leaflet-oldie .leaflet-control-zoom,
+.leaflet-oldie .leaflet-control-layers,
+.leaflet-oldie .leaflet-popup-content-wrapper,
+.leaflet-oldie .leaflet-popup-tip {
+	border: 1px solid #999;
+	}
+
+
+/* div icon */
+
+.leaflet-div-icon {
+	background: #fff;
+	border: 1px solid #666;
+	}
+
+
+/* Tooltip */
+/* Base styles for the element that has a tooltip */
+.leaflet-tooltip {
+	position: absolute;
+	padding: 6px;
+	background-color: #fff;
+	border: 1px solid #fff;
+	border-radius: 3px;
+	color: #222;
+	white-space: nowrap;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	pointer-events: none;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+	}
+.leaflet-tooltip.leaflet-interactive {
+	cursor: pointer;
+	pointer-events: auto;
+	}
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	position: absolute;
+	pointer-events: none;
+	border: 6px solid transparent;
+	background: transparent;
+	content: "";
+	}
+
+/* Directions */
+
+.leaflet-tooltip-bottom {
+	margin-top: 6px;
+}
+.leaflet-tooltip-top {
+	margin-top: -6px;
+}
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-top:before {
+	left: 50%;
+	margin-left: -6px;
+	}
+.leaflet-tooltip-top:before {
+	bottom: 0;
+	margin-bottom: -12px;
+	border-top-color: #fff;
+	}
+.leaflet-tooltip-bottom:before {
+	top: 0;
+	margin-top: -12px;
+	margin-left: -6px;
+	border-bottom-color: #fff;
+	}
+.leaflet-tooltip-left {
+	margin-left: -6px;
+}
+.leaflet-tooltip-right {
+	margin-left: 6px;
+}
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	top: 50%;
+	margin-top: -6px;
+	}
+.leaflet-tooltip-left:before {
+	right: 0;
+	margin-right: -12px;
+	border-left-color: #fff;
+	}
+.leaflet-tooltip-right:before {
+	left: 0;
+	margin-left: -12px;
+	border-right-color: #fff;
+	}
+
+/* Printing */
+
+@media print {
+	/* Prevent printers from removing background-images of controls. */
+	.leaflet-control {
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+		}
+	}
+
+</style>
+</head>
+<body class="loading">
+<div class="app">
+
+  <header class="hero">
+    <div>
+      <h1>Wilson County Health Inspection Tracker</h1>
+      <p id="subtitle">Restaurant, pool, and facility inspections</p>
+    </div>
+    <a class="rba" href="https://royalblueanalytics.com" target="_blank" rel="noopener">
+      <span class="mark">RBA</span>
+      <span><small>Created by</small><strong>Royal Blue Analytics</strong></span>
+    </a>
+  </header>
+
+  <section class="filters" aria-label="Filters">
+    <div class="f-group"><span class="f-label">Period</span><div class="seg" id="periodSeg"></div></div>
+    <div class="f-group"><span class="f-label">City</span><div class="seg" id="citySeg"></div></div>
+    <div class="f-group"><span class="f-label">Type</span><div class="seg" id="typeSeg"></div></div>
+    <span class="f-scope" id="scope"></span>
+  </section>
+
+  <section class="kpis">
+    <div class="kpi"><span class="l">Inspections</span><span class="v" id="kCount">0</span><span class="s" id="kCountSub"></span></div>
+    <div class="kpi"><span class="l">Average Score</span><span class="v" id="kAvg">0</span><span class="s" id="kAvgSub"></span></div>
+    <div class="kpi"><span class="l">Perfect 100s</span><span class="v" id="kPerfect">0</span><span class="s pos" id="kPerfectSub"></span></div>
+    <div class="kpi"><span class="l">Scored Below 80</span><span class="v" id="kLow">0</span><span class="s" id="kLowSub"></span></div>
+  </section>
+
+  <section class="panel pad">
+    <div class="grid3">
+      <div class="box">
+        <h3>Score Distribution</h3><div class="sub">Inspections in each score band</div>
+        <div class="cols" id="distChart"></div><div class="xl" id="distLabels"></div>
+      </div>
+      <div class="box">
+        <h3>Lowest Scores</h3><div class="sub">Bottom 5 for this selection</div>
+        <div class="hbars" id="lowChart"></div>
+      </div>
+      <div class="box">
+        <h3>Average Score by City</h3><div class="sub">Scored inspections only</div>
+        <div class="hbars" id="cityChart"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bottom">
+    <div class="panel pad">
+      <div class="map-head">
+        <div><h3 class="bt">Inspection Map</h3><div class="sub" id="mapSub">Pins placed by street address</div></div>
+        <div class="legend">
+          <span><span class="dot d-good"></span>90+</span>
+          <span><span class="dot d-warn"></span>70 to 89</span>
+          <span><span class="dot d-bad"></span>Under 70</span>
+          <span><span class="dot d-na"></span>Pass</span>
+        </div>
+      </div>
+      <div class="map-wrap"><div id="map"></div><div class="map-status" id="mapStatus">Loading map…</div></div>
+    </div>
+
+    <div class="panel pad">
+      <div class="map-head">
+        <div><h3 class="bt">Find a Business</h3><div class="sub" id="tableCount"></div></div>
+      </div>
+      <input class="search" id="search" type="search" placeholder="Search a restaurant, pool, or street…">
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th data-k="0">Name <span class="arrow"></span></th>
+            <th data-k="1">Score <span class="arrow"></span></th>
+            <th data-k="4">City <span class="arrow"></span></th>
+            <th data-k="6">Type <span class="arrow"></span></th>
+            <th data-k="8">Date <span class="arrow"></span></th>
+          </tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="who">
+      <span class="mark">RBA</span>
+      <div>
+        <div class="t1">Created by Royal Blue Analytics</div>
+        <div class="t2">Data analytics and AI consulting · Nashville, TN</div>
+      </div>
+    </div>
+    <div class="links">
+      <a href="https://royalblueanalytics.com" target="_blank" rel="noopener">Website</a>
+      <a href="https://www.linkedin.com/in/sekoutyler/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="cta" href="https://calendly.com/sekoutyler/discovery" target="_blank" rel="noopener">Book a discovery call</a>
+    </div>
+  </footer>
+  <details class="credit">
+    <summary>About this data</summary>
+    <p id="aboutText">Independent demo by Royal Blue Analytics. Scores come from Tennessee Department of Health inspections as published by Wilson County Source and are out of 100. Map data © OpenStreetMap contributors.</p>
+  </details>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+// Data is loaded from data/inspections.json, built by scripts/build.py.
+// row: [name, score|null, resultText, street, city, zip, facilityType, inspectionType, date, lat|null, lon|null]
+let DATA = [], META = {}, MAIN_CITIES = [], LATEST = null;
+const state = { period:'30', city:'All', type:'All', q:'', sortK:1, sortDir:1 };
+const scored = r => r[1] !== null && r[1] !== undefined;
+const band = s => s >= 90 ? 'good' : s >= 70 ? 'warn' : 'bad';
+const typeGroup = t => (t === 'Food Service' || t === 'Swimming Pools') ? t : 'Other';
+const cityLabel = c => c || 'Not listed';
+const fmtDate = d => { const [y,m,dd] = d.split('-'); return `${+m}/${+dd}/${y.slice(2)}`; };
+const fmtLong = d => new Date(d + 'T12:00:00').toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' });
+const TYPE_LABEL = { 'All':'All', 'Food Service':'Restaurants', 'Swimming Pools':'Pools', 'Other':'Other' };
+const PERIODS = [['30','Last 30 days'],['90','Last 90 days'],['365','Last 12 months'],['all','All time']];
+const TABLE_LIMIT = 400;
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function periodStart(){
+  if (state.period === 'all' || !LATEST) return '';
+  const d = new Date(LATEST + 'T12:00:00'); d.setDate(d.getDate() - (+state.period - 1));
+  return d.toISOString().slice(0,10);
+}
+function periodRows(){ const from = periodStart(); return from ? DATA.filter(r => r[8] >= from) : DATA; }
+function cityMatch(r){
+  if (state.city === 'All') return true;
+  if (state.city === 'Other') return !MAIN_CITIES.includes(r[4]);
+  return r[4] === state.city;
+}
+function filtered(ignoreCity){
+  return periodRows().filter(r => (ignoreCity || cityMatch(r)) && (state.type==='All' || typeGroup(r[6])===state.type));
+}
+
+function buildFilters(){
+  const seg = (id, items, key, label) => {
+    const el = document.getElementById(id);
+    el.innerHTML = items.map(v => `<button class="${state[key]===v?'on':''}" data-v="${esc(v)}">${esc(label(v))}</button>`).join('');
+    el.querySelectorAll('button').forEach(b => b.onclick = () => { state[key] = b.dataset.v; render(true); });
+  };
+  const pl = Object.fromEntries(PERIODS);
+  seg('periodSeg', PERIODS.map(p => p[0]), 'period', v => pl[v]);
+  seg('citySeg', ['All', ...MAIN_CITIES, 'Other'], 'city', v => v);
+  seg('typeSeg', ['All','Food Service','Swimming Pools','Other'], 'type', v => TYPE_LABEL[v]);
+}
+
+function renderSubtitle(){
+  const rows = periodRows();
+  const sub = document.getElementById('subtitle');
+  if (!rows.length) { sub.textContent = 'Restaurant, pool, and facility inspections'; return; }
+  const dates = rows.map(r => r[8]).sort();
+  const a = dates[0], b = dates[dates.length - 1];
+  sub.textContent = `Restaurant, pool, and facility inspections · ${a === b ? fmtLong(a) : fmtLong(a) + ' to ' + fmtLong(b)}`;
+}
+
+function renderKPIs(rows){
+  const s = rows.filter(scored), all = periodRows().filter(scored);
+  const avg = s.length ? s.reduce((a,r)=>a+r[1],0)/s.length : 0;
+  const cAvg = all.length ? all.reduce((a,r)=>a+r[1],0)/all.length : 0;
+  const isAll = state.city==='All' && state.type==='All';
+  document.getElementById('kCount').textContent = rows.length.toLocaleString();
+  document.getElementById('kCountSub').textContent = `${s.length.toLocaleString()} with a numeric score`;
+  document.getElementById('kAvg').textContent = s.length ? avg.toFixed(1) : 'n/a';
+  const sub = document.getElementById('kAvgSub'), diff = avg - cAvg;
+  sub.className = 's ' + (isAll || !s.length ? '' : diff >= 0 ? 'pos' : 'neg');
+  sub.textContent = isAll ? 'County-wide for this period' : !s.length ? 'No scored inspections' : `${diff>=0?'▲':'▼'} ${Math.abs(diff).toFixed(1)} vs county`;
+  const perfect = s.filter(r=>r[1]===100).length, low = s.filter(r=>r[1]<80).length;
+  document.getElementById('kPerfect').textContent = perfect.toLocaleString();
+  document.getElementById('kPerfectSub').textContent = s.length ? `${Math.round(perfect/s.length*100)}% of scored` : '';
+  document.getElementById('kLow').textContent = low.toLocaleString();
+  const ls = document.getElementById('kLowSub');
+  ls.textContent = low ? (s.length ? `${Math.round(low/s.length*100)}% of scored` : '') : 'None in this selection';
+  ls.className = 's ' + (low ? 'neg' : 'pos');
+}
+
+function hbars(id, items){
+  const el = document.getElementById(id);
+  if (!items.length){ el.innerHTML = '<div class="empty">No scored inspections for this selection.</div>'; return; }
+  el.innerHTML = items.map(i => `<div class="hrow" title="${esc(i.name)}"><div class="hn">${esc(i.name)}${i.sub?`<small>${esc(i.sub)}</small>`:''}</div>
+    <div class="ht"><div class="hf ${i.cls||''}" style="width:${Math.max(2,i.v)}%"></div></div><div class="hv">${i.label ?? i.v}</div></div>`).join('');
+}
+
+function renderOverview(rows){
+  const s = rows.filter(scored);
+  const bands = [['<70',0,69,'bad'],['70s',70,79,'warn'],['80s',80,89,'warn'],['90-94',90,94,''],['95-99',95,99,''],['100',100,100,'']];
+  const items = bands.map(([l,a,b,c]) => ({l, v:s.filter(r=>r[1]>=a&&r[1]<=b).length, c}));
+  const max = Math.max(1, ...items.map(i=>i.v));
+  document.getElementById('distChart').innerHTML = items.map(i =>
+    `<div class="col" title="${i.l}: ${i.v}"><div class="val">${i.v||''}</div><div class="bar ${i.c}" style="height:${i.v/max*82}%"></div></div>`).join('');
+  document.getElementById('distLabels').innerHTML = items.map(i => `<span>${i.l}</span>`).join('');
+
+  hbars('lowChart', [...s].sort((a,b)=>a[1]-b[1] || (a[8] < b[8] ? 1 : -1)).slice(0,5).map(r => ({
+    name:r[0], sub:`${cityLabel(r[4])} · ${TYPE_LABEL[typeGroup(r[6])]} · ${fmtDate(r[8])}`, v:r[1], cls: band(r[1])==='good' ? '' : band(r[1]) })));
+
+  const cr = filtered(true).filter(scored);
+  const byCity = {};
+  cr.forEach(r => { const c = MAIN_CITIES.includes(r[4]) ? r[4] : 'Other'; (byCity[c] ||= []).push(r[1]); });
+  hbars('cityChart', Object.entries(byCity).map(([c, xs]) => {
+    const v = xs.reduce((a,b)=>a+b,0)/xs.length;
+    return { name:c, sub:`${xs.length.toLocaleString()} scored`, v, label:v.toFixed(1), cls:(state.city==='All'||state.city===c)?'':'muted' };
+  }).sort((a,b)=>b.v-a.v));
+}
+
+function renderTable(rows){
+  const q = state.q.toLowerCase(), k = state.sortK, d = state.sortDir;
+  const t = rows.filter(r => !q || r[0].toLowerCase().includes(q) || r[3].toLowerCase().includes(q))
+    .sort((a,b) => (k===1 ? ((a[1]??999)-(b[1]??999))*d : String(a[k]).localeCompare(String(b[k]))*d) || (a[8] < b[8] ? 1 : -1));
+  document.getElementById('tbody').innerHTML = t.slice(0, TABLE_LIMIT).map(r => {
+    const dot = scored(r) ? 'd-'+band(r[1]) : 'd-na';
+    const addr = r[3] ? `<a href="${gmaps(r)}" target="_blank" rel="noopener">${esc(r[3])}</a>` : 'Address not listed';
+    return `<tr data-key="${esc(addrKey(r))}"><td>${esc(r[0])}<br><small class="addr">${addr}</small></td>
+      <td><span class="dot ${dot}"></span>${scored(r) ? r[1] : esc(r[2]||'Pending')}</td>
+      <td class="m">${esc(cityLabel(r[4]))}</td><td class="m">${TYPE_LABEL[typeGroup(r[6])]}${r[7] ? `<br><small class="addr">${esc(r[7])}</small>` : ''}</td><td class="m">${fmtDate(r[8])}</td></tr>`;
+  }).join('') || '<tr><td colspan="5" class="m">No matches.</td></tr>';
+  const shown = Math.min(t.length, TABLE_LIMIT);
+  document.getElementById('tableCount').textContent =
+    (t.length > TABLE_LIMIT ? `Showing ${shown} of ${t.length.toLocaleString()} records, search to narrow it down` : `${t.length.toLocaleString()} records`) + ' · click a row to find it on the map';
+  document.querySelectorAll('th').forEach(th => th.querySelector('.arrow').textContent = +th.dataset.k===k ? (d===1?'▲':'▼') : '');
+}
+
+// Map: uses stored coordinates; live lookup only for the few that are missing
+const gmaps = r => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(`${r[3]}, ${r[4]}, TN ${r[5]}`);
+function cleanStreet(s){
+  return s.replace(/^(\d+)([A-Za-z])/, '$1 $2')
+    .replace(/\b(?:ste|suite|unit|bldg|apt)\.?\s*#?\s*[\w-]+$/i, '')
+    .replace(/(\b(?:Rd|Dr|St|Blvd|Pkwy|Ln|Way|Wy|Cir|Ct|Ave|Hwy|Pike)\.?)\s+#?\d+[A-Za-z]?$/i, '$1')
+    .replace('Mt.Juliet', 'Mt. Juliet').replace(/\.(?=\s|$)/g, '').replace(/\s+/g, ' ').trim();
+}
+const addrKey = r => `${cleanStreet(r[3])}|${r[4]}|${r[5]}`.toLowerCase();
+const GEO_KEY = 'wchs-geocache-v2';
+const LIVE_LOOKUP_LIMIT = 10; // per page load; the pipeline should have already placed nearly everything
+let geoCache = {};
+try { geoCache = JSON.parse(localStorage.getItem(GEO_KEY) || '{}'); } catch(e) { geoCache = {}; }
+const saveGeo = () => { try { localStorage.setItem(GEO_KEY, JSON.stringify(geoCache)); } catch(e) {} };
+
+let map = null, markerLayer = null, markerIndex = {}, liveLookups = 0;
+const statusEl = document.getElementById('mapStatus');
+const setStatus = (msg, full) => { statusEl.textContent = msg; statusEl.classList.toggle('full', !!full); };
+
+function initMap(){
+  if (typeof L === 'undefined') {
+    setStatus('The interactive map loads when this page is hosted on your site (sqlsekou.com or GitHub). This preview blocks outside map services. Address links in the table below still open each location in Google Maps.', true);
+    return;
+  }
+  map = L.map('map', { scrollWheelZoom:false }).setView([36.19, -86.40], 11);
+  const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19, attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+  let tileErrors = 0;
+  tiles.on('tileerror', () => { if (++tileErrors === 4) setStatus('Map tiles are blocked in this preview. The map works once hosted on your site.', true); });
+  markerLayer = L.layerGroup().addTo(map);
+  setStatus('');
+}
+
+async function geocodeOne(r){
+  const params = new URLSearchParams({ street: cleanStreet(r[3]), city: r[4], state: 'TN', postalcode: r[5], country: 'USA', format: 'json', limit: '1' });
+  const res = await fetch('https://nominatim.openstreetmap.org/search?' + params);
+  const hits = await res.json();
+  return hits.length ? [+hits[0].lat, +hits[0].lon, 'approximate'] : null;
+}
+
+async function geocodeMissing(rows){
+  const todo = [], seen = new Set();
+  rows.forEach(r => { const k = addrKey(r); if (r[3] && !(k in geoCache) && !seen.has(k)) { seen.add(k); todo.push(r); } });
+  for (const r of todo) {
+    if (liveLookups >= LIVE_LOOKUP_LIMIT) break;
+    liveLookups++;
+    try {
+      geoCache[addrKey(r)] = await geocodeOne(r);
+      saveGeo(); drawMarkers(false);
+    } catch(e) { break; }
+    await new Promise(ok => setTimeout(ok, 1100)); // OpenStreetMap policy: 1 request per second
+  }
+}
+
+function drawMarkers(fit){
+  if (!map) return;
+  markerLayer.clearLayers(); markerIndex = {};
+  const rows = filtered(false);
+  const groups = {};
+  rows.forEach(r => { const c = geoCache[addrKey(r)]; if (c) (groups[addrKey(r)] ||= { c, rows: [] }).rows.push(r); });
+  const css = getComputedStyle(document.documentElement);
+  const colors = { good: css.getPropertyValue('--good').trim(), warn: css.getPropertyValue('--warn').trim(), bad: css.getPropertyValue('--bad').trim(), na: '#9AA1AD' };
+  const bounds = [];
+  Object.entries(groups).forEach(([gk, g]) => {
+    g.rows.sort((a,b) => a[8] < b[8] ? 1 : -1);
+    const latest = g.rows.filter(scored)[0];
+    const color = latest ? colors[band(latest[1])] : colors.na;
+    const first = g.rows[0];
+    const shown = g.rows.slice(0, 8);
+    const html = `<b>${g.rows.length > 1 ? esc(g.rows.length + ' inspections at this address') : esc(first[0])}</b>
+      <div class="pop-addr">${esc(first[3])}, ${esc(first[4])} ${esc(first[5])}${g.c[2] === 'approximate' || g.c[2] === 'city centroid' ? ' · approximate location' : ''}</div>
+      ${shown.map(r => `<div class="pop-row"><span>${esc(r[0])}<br><small style="color:#6B7280">${esc(r[6])}${r[7] ? ' ' + esc(r[7]) : ''} · ${fmtDate(r[8])}</small></span><b>${scored(r) ? r[1] : esc(r[2] || 'Pending')}</b></div>`).join('')}
+      ${g.rows.length > shown.length ? `<div class="pop-row"><small style="color:#6B7280">and ${g.rows.length - shown.length} more, search the table for the full list</small></div>` : ''}
+      <a class="pop-link" href="${gmaps(first)}" target="_blank" rel="noopener">Open in Google Maps ↗</a>`;
+    markerIndex[gk] = L.circleMarker([g.c[0], g.c[1]], {
+      radius: g.rows.length > 1 ? 9 : 7, color: '#FFFFFF', weight: 2, fillColor: color, fillOpacity: 0.9
+    }).bindPopup(html, { maxWidth: 300 }).addTo(markerLayer);
+    bounds.push([g.c[0], g.c[1]]);
+  });
+  const located = rows.filter(r => geoCache[addrKey(r)]).length;
+  document.getElementById('mapSub').textContent = `${located.toLocaleString()} of ${rows.length.toLocaleString()} inspections mapped by street address · pin color follows the latest score there`;
+  if (bounds.length && fit) {
+    // Fit to Wilson County pins; a handful of out-of-county mobile units would otherwise zoom the map out
+    const local = bounds.filter(([la, lo]) => la > 35.95 && la < 36.45 && lo > -86.75 && lo < -86.0);
+    map.invalidateSize();
+    map.fitBounds(local.length ? local : bounds, { padding: [30, 30], maxZoom: 14 });
+  }
+  const missing = rows.length - located;
+  setStatus(missing ? `${missing.toLocaleString()} inspection${missing>1?'s':''} could not be placed by address` : '');
+}
+
+function locate(key){
+  if (!map) return;
+  const mk = markerIndex[key];
+  if (!mk) { setStatus('That address is not on the map'); return; }
+  document.querySelector('.map-wrap').scrollIntoView?.({ behavior:'smooth', block:'nearest' });
+  map.setView(mk.getLatLng(), 15); mk.openPopup();
+}
+
+function render(refit){
+  buildFilters();
+  const rows = filtered(false);
+  renderSubtitle();
+  document.getElementById('scope').textContent = `Showing ${rows.length.toLocaleString()} of ${periodRows().length.toLocaleString()} inspections in this period`;
+  renderKPIs(rows); renderOverview(rows); renderTable(rows); drawMarkers(refit);
+  geocodeMissing(rows);
+  postHeight();
+}
+
+function renderAbout(){
+  const el = document.getElementById('aboutText');
+  const range = META.date_min && META.date_max ? ` The dataset covers ${META.count.toLocaleString()} inspections published between ${fmtLong(META.date_min)} and ${fmtLong(META.date_max)}${META.generated ? `, last refreshed ${fmtLong(META.generated.slice(0,10))}` : ''}.` : '';
+  el.textContent = `Independent demo by Royal Blue Analytics, not affiliated with Wilson County Source. Scores come from Tennessee Department of Health inspections as published in the weekly Health Scores posts on Wilson County Source and are out of 100. Child care facilities receive an approval result instead of a number and are left out of averages. A score of 0 on a pool follow-up is shown as published and may reflect a closure.${range} Click a business in the table to find it on the map. Map data © OpenStreetMap contributors.`;
+}
+
+// Auto-resize when embedded in an iframe (e.g., WordPress)
+function postHeight(){
+  if (window.parent === window) return;
+  requestAnimationFrame(() => window.parent.postMessage({ type:'wchs-height', height: document.documentElement.scrollHeight }, '*'));
+}
+window.addEventListener('resize', postHeight);
+
+document.getElementById('tbody').addEventListener('click', e => { if (e.target.closest('a')) return; const tr = e.target.closest('tr[data-key]'); if (tr) locate(tr.dataset.key); });
+document.getElementById('search').addEventListener('input', e => { state.q = e.target.value; renderTable(filtered(false)); });
+document.querySelectorAll('th').forEach(th => th.onclick = () => {
+  const k = +th.dataset.k; state.sortDir = state.sortK===k ? -state.sortDir : 1; state.sortK = k; renderTable(filtered(false));
+});
+
+async function load(){
+  document.getElementById('scope').textContent = 'Loading inspections…';
+  initMap();
+  try {
+    const res = await fetch('data/inspections.json', { cache: 'no-cache' });
+    if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+    const json = await res.json();
+    DATA = json.rows || []; META = json.meta || {};
+  } catch (e) {
+    document.getElementById('scope').textContent = 'Could not load the inspection data.';
+    document.getElementById('tableCount').textContent = 'Data unavailable right now. Please try again later.';
+    setStatus('Data unavailable', true);
+    return;
+  }
+  // Stored coordinates from the pipeline take priority over anything cached in the browser
+  DATA.forEach(r => { if (r[9] != null && r[10] != null) geoCache[addrKey(r)] = [r[9], r[10], 'address']; });
+  LATEST = DATA.reduce((m, r) => r[8] > m ? r[8] : m, '');
+  const counts = {}; DATA.forEach(r => { if (r[4]) counts[r[4]] = (counts[r[4]]||0)+1; });
+  MAIN_CITIES = Object.keys(counts).filter(c => counts[c] >= 25).sort((a,b)=>counts[b]-counts[a]);
+  document.body.classList.remove('loading');
+  renderAbout();
+  render(true);
+}
+load();
+</script>
+</body>
+</html>

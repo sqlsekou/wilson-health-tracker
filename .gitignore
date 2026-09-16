@@ -1,0 +1,7 @@
+.env
+cache/
+__pycache__/
+*.pyc
+*_geocoded.csv
+.DS_Store
+Thumbs.db
