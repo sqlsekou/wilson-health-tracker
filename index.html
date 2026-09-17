@@ -131,6 +131,7 @@
   .kpi{cursor:pointer;transition:transform .12s,box-shadow .12s;text-align:left;font:inherit;color:inherit;width:100%}
   .kpi:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(16,24,40,.10)}
   .kpi.on{outline:2px solid var(--brand);outline-offset:-2px;background:var(--brand-soft)}
+  .kpi.dim .v{color:var(--muted)}
   .kpi.on.good{outline-color:var(--good)} .kpi.on.warn{outline-color:var(--warn)} .kpi.on.bad{outline-color:var(--bad)}
   .kpi .hint-l{font-size:10px;color:var(--muted);margin-top:auto;padding-top:4px;opacity:0;transition:opacity .12s}
   .kpi:hover .hint-l,.kpi.on .hint-l{opacity:1}
@@ -351,11 +352,11 @@
         <div class="note" id="zeroNote"></div>
       </div>
       <div class="box">
-        <h3>How cities compare</h3><div class="sub">Share of scored inspections at 90 or better. Click a city to focus on it.</div>
+        <h3>How cities compare</h3><div class="sub" id="citySub">Share of scored inspections at 90 or better. Click a city to focus on it.</div>
         <div class="hbars" id="cityChart"></div>
       </div>
       <div class="box">
-        <h3>How categories compare</h3><div class="sub">Same pass rate by type of place. Click one to focus on it.</div>
+        <h3>How categories compare</h3><div class="sub" id="catSub">Same pass rate by type of place. Click one to focus on it.</div>
         <div class="hbars" id="catChart"></div>
       </div>
     </div>
@@ -422,8 +423,9 @@
 // row: [name, score|null, resultText, street, city, zip, facilityType, inspectionType, date, lat|null, lon|null]
 let DATA = [], META = {}, MAIN_CITIES = [], LATEST = null, YEAR_AGO = '', PLACES = {}, PLACE_LIST = [], PREV = new Map(), TABLE_ROWS = [];
 const state = { period:'90', city:'All', type:'All', q:'', sortK:8, sortDir:-1, place:null, sel:null };
-// sel: a cross-filter picked from a KPI card or a chart bar. It narrows the map and table,
-// while the KPIs and charts keep showing the full view so the selection stays in context.
+// sel: a cross-filter picked from a KPI card or a chart bar. Every section follows it. The one
+// exception is the score distribution when the selection is one of its own bars: it stays whole
+// with the other bars dimmed, so the bar can be clicked again to clear.
 const SELS = {
   pass: { label:'Scored 90 or better', test: r => scored(r) && r[1] >= 90 },
   low:  { label:'Scored below 80',     test: r => scored(r) && r[1] < 80 },
@@ -615,6 +617,7 @@ function renderKPIs(rows){
   el('kLowSub').textContent = s.length ? `${pct(low.length, s.length)} of scored · ${new Set(low.map(placeKey)).size} place${new Set(low.map(placeKey)).size===1?'':'s'}` : '';
   el('kZero').textContent = zeros.length.toLocaleString();
   el('kZeroSub').textContent = zeros.length ? `scored 0 on reinspection, usually closed until fixed` : 'None in this selection';
+  el('kPass').parentNode.classList.toggle('dim', !s.length);
   document.querySelectorAll('.kpi').forEach(k => {
     const on = k.dataset.sel === state.sel || (k.dataset.sel === 'all' && !state.sel);
     k.classList.toggle('on', on);
@@ -631,8 +634,9 @@ function hbars(id, items, onClick){
   if (onClick) box.querySelectorAll('.hrow').forEach(r => { r.onclick = () => onClick(items[+r.dataset.n]); r.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { onClick(items[+r.dataset.n]); e.preventDefault(); } }; });
 }
 
-function renderStory(rows){
-  const s = rows.filter(scored);
+function renderStory(rows, unfiltered){
+  const bandSel = (state.sel || '').startsWith('band:');
+  const s = (bandSel ? unfiltered : rows).filter(scored);
   const items = BANDS.map(([l,a,b,c]) => ({l, v:s.filter(r=>r[1]>=a&&r[1]<=b).length, c, key:'band:'+l}));
   const max = Math.max(1, ...items.map(i=>i.v));
   const hasSel = items.some(i => i.key === state.sel);
@@ -660,24 +664,32 @@ function renderStory(rows){
   const zb = el('zeroBtn'); if (zb) zb.onclick = () => { setSel('zero'); scrollTable(); };
   const rb = el('repBtn'); if (rb) rb.onclick = () => { setSel('repeat'); scrollTable(); };
 
-  // Cities: pass rate with the base shown, so a high rate on 4 inspections reads as what it is
-  const cr = filtered(true).filter(scored);
-  const byCity = {};
-  cr.forEach(r => { const c = MAIN_CITIES.includes(r[4]) ? r[4] : 'Other'; (byCity[c] ||= []).push(r[1]); });
-  // A city with a handful of inspections would top the list at 100%; fold small ones into Other
-  Object.keys(byCity).forEach(c => { if (c !== 'Other' && byCity[c].length < 20 && state.city !== c) { (byCity.Other ||= []).push(...byCity[c]); delete byCity[c]; } });
-  hbars('cityChart', Object.entries(byCity).map(([c, xs]) => {
-    const p = xs.filter(x => x >= 90).length / xs.length * 100;
-    return { name:c === 'Other' ? 'Other cities' : c, sub:`${xs.length.toLocaleString()} scored inspection${xs.length>1?'s':''}`, v:p, label:Math.round(p)+'%', cls:(state.city==='All'||state.city===c)?'good':'muted', on:state.city===c, city:c, title:`${c}: ${Math.round(p)}% of ${xs.length} scored 90 or better. Click to focus on ${c}.` };
-  }).sort((a,b)=>b.v-a.v), i => { state.city = state.city === i.city ? 'All' : i.city; render(true); });
-
-  // Categories: the same pass rate by type of place, so pools and restaurants can be compared on equal terms
-  const byCat = {};
-  periodRows().filter(r => cityMatch(r) && scored(r)).forEach(r => { (byCat[catOf(r)] ||= []).push(r[1]); });
-  hbars('catChart', Object.entries(byCat).filter(([c, xs]) => xs.length >= 5 || state.type === c).map(([c, xs]) => {
-    const p = xs.filter(x => x >= 90).length / xs.length * 100;
-    return { name:c, sub:`${xs.length.toLocaleString()} scored inspection${xs.length>1?'s':''}`, v:p, label:Math.round(p)+'%', cls:(state.type==='All'||state.type===c)?'good':'muted', on:state.type===c, cat:c, title:`${c}: ${Math.round(p)}% of ${xs.length} scored 90 or better. Click to focus on ${c}.` };
-  }).sort((a,b)=>b.v-a.v), i => { state.type = state.type === i.cat ? 'All' : i.cat; render(true); });
+  // Cities and categories. With no selection: pass rate, with the base shown so a high rate on 4
+  // inspections reads as what it is. With a selection (say, scores in the 70s): how many of
+  // those fall in each city or category, since a pass rate of a hand-picked band is meaningless.
+  const selOn = !!state.sel;
+  const groupChart = (id, rows, keyOf, isOn, onPick, subEl, noun) => {
+    const groups = {};
+    rows.forEach(r => { (groups[keyOf(r)] ||= []).push(r); });
+    let items;
+    if (selOn) {
+      const max = Math.max(1, ...Object.values(groups).map(xs => xs.length));
+      items = Object.entries(groups).map(([c, xs]) => ({ name:c, sub:`${Math.round(xs.length / rows.length * 100)}% of this selection`, v:xs.length / max * 100, label:xs.length.toLocaleString(), cls:isOn(c) ? 'good' : (isOn('All') ? '' : 'muted'), on:isOn(c), key:c, title:`${xs.length} in ${c}. Click to focus on ${c}.` }));
+      el(subEl).textContent = `Inspections in this selection by ${noun}. Click one to focus on it.`;
+    } else {
+      const scoredGroups = Object.fromEntries(Object.entries(groups).map(([c, xs]) => [c, xs.filter(scored).map(r => r[1])]).filter(([c, xs]) => xs.length));
+      // A group with a handful of inspections would top the list at 100%; fold small ones into Other
+      Object.keys(scoredGroups).forEach(c => { if (c !== 'Other' && scoredGroups[c].length < 20 && !isOn(c)) { (scoredGroups.Other ||= []).push(...scoredGroups[c]); delete scoredGroups[c]; } });
+      items = Object.entries(scoredGroups).map(([c, xs]) => {
+        const p = xs.filter(x => x >= 90).length / xs.length * 100;
+        return { name:c === 'Other' ? `Other ${noun === 'city' ? 'cities' : 'categories'}` : c, sub:`${xs.length.toLocaleString()} scored inspection${xs.length>1?'s':''}`, v:p, label:Math.round(p)+'%', cls:(isOn('All')||isOn(c))?'good':'muted', on:isOn(c), key:c, title:`${c}: ${Math.round(p)}% of ${xs.length} scored 90 or better. Click to focus on ${c}.` };
+      });
+      el(subEl).textContent = `Share of scored inspections at 90 or better. Click a ${noun} to focus on it.`;
+    }
+    hbars(id, items.sort((a,b)=>b.v-a.v || a.name.localeCompare(b.name)), i => onPick(i.key));
+  };
+  groupChart('cityChart', filtered(true).filter(selMatch), r => MAIN_CITIES.includes(r[4]) ? r[4] : 'Other', c => state.city === c, c => { state.city = state.city === c ? 'All' : c; render(true); }, 'citySub', 'city');
+  groupChart('catChart', periodRows().filter(r => cityMatch(r) && selMatch(r)), catOf, c => state.type === c, c => { state.type = state.type === c ? 'All' : c; render(true); }, 'catSub', 'category');
 }
 
 function renderTable(rows){
@@ -824,10 +836,10 @@ function render(refit){
   const rows = filtered(false), view = viewRows();
   renderSubtitle();
   el('scope').textContent = state.sel
-    ? `Map and table show ${view.length.toLocaleString()} of ${rows.length.toLocaleString()} inspections in this view`
+    ? `Showing ${view.length.toLocaleString()} of ${rows.length.toLocaleString()} inspections in this view`
     : `Showing ${rows.length.toLocaleString()} of ${periodRows().length.toLocaleString()} inspections in this period`;
   renderChips();
-  renderKPIs(rows); renderStory(rows); renderTable(view); drawMarkers(refit);
+  renderKPIs(view); renderStory(view, rows); renderTable(view); drawMarkers(refit);
   geocodeMissing(view);
   writeHash();
   postHeight();
