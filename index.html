@@ -608,7 +608,9 @@ function renderKPIs(rows){
   const s = rows.filter(scored), zeros = rows.filter(isZero);
   const places = new Set(rows.map(placeKey)).size;
   el('kCount').textContent = rows.length.toLocaleString();
-  el('kCountSub').textContent = `at ${places.toLocaleString()} place${places===1?'':'s'} · ${s.length.toLocaleString()} with a score`;
+  const revisits = rows.length - places;
+  el('kCountSub').textContent = `${places.toLocaleString()} place${places===1?'':'s'}` + (revisits ? ` · ${revisits.toLocaleString()} return visit${revisits===1?'':'s'}` : '') + ` · ${s.length.toLocaleString()} scored`;
+  el('kCount').parentNode.title = revisits ? `${rows.length} inspections at ${places} places. ${revisits} were return visits, mostly follow-ups after a low score.` : `${rows.length} inspections, each at a different place.`;
   const pass = s.filter(r => r[1] >= 90).length;
   el('kPass').textContent = pct(pass, s.length);
   el('kPassSub').textContent = s.length ? `${pass.toLocaleString()} of ${s.length.toLocaleString()} scored inspections` : 'No scored inspections';
@@ -879,7 +881,7 @@ function downloadCSV(){
 
 function renderAbout(){
   const range = META.date_min && META.date_max ? ` The dataset covers ${META.count.toLocaleString()} inspections published between ${fmtLong(META.date_min)} and ${fmtLong(META.date_max)}${META.generated ? `, last refreshed ${fmtLong(META.generated.slice(0,10))}` : ''}.` : '';
-  el('aboutText').textContent = `Independent demo by Royal Blue Analytics, not affiliated with Wilson County Source. Scores come from Tennessee Department of Health inspections as published in the weekly Health Scores posts on Wilson County Source and are out of 100. Child care facilities receive an approval result instead of a number. A score of 0 appears only on failed follow-up visits (mostly pools) and is treated as a failed reinspection rather than a score, so it is left out of averages and pass rates. Pass rate means the share of scored inspections at 90 or better. A place is tagged as a repeat low scorer when it missed 90 on two or more visits in the last 12 months.${range} Map data © OpenStreetMap contributors.`;
+  el('aboutText').textContent = `Independent demo by Royal Blue Analytics, not affiliated with Wilson County Source. Scores come from Tennessee Department of Health inspections as published in the weekly Health Scores posts on Wilson County Source and are out of 100. Child care facilities receive an approval result instead of a number. A score of 0 appears only on failed follow-up visits (mostly pools) and is treated as a failed reinspection rather than a score, so it is left out of averages and pass rates. Each row is one inspection, so a place with a routine visit and a follow-up in the same period counts twice; the Inspections card shows how many were return visits. Pass rate means the share of scored inspections at 90 or better. A place is tagged as a repeat low scorer when it missed 90 on two or more visits in the last 12 months.${range} Map data © OpenStreetMap contributors.`;
 }
 
 function postHeight(){

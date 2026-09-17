@@ -136,12 +136,24 @@ def geo_key(street: str, city: str, zip_code: str) -> str:
     return f"{clean_street(street)}|{city}|{zip_code}".lower()
 
 
+def norm_name(name: str) -> str:
+    """Spelling-insensitive name: "Smith's" == "Smiths", "A & B" == "A and B". Mirrors normName in index.html."""
+    n = (name or "").lower().replace("'", "").replace("’", "").replace("&", " and ")
+    return re.sub(r"[^a-z0-9]+", " ", n).strip()
+
+
 def dedupe_key(rec: dict) -> str:
+    """Same place, same day, same type, same result. The roundup posts respell names, so the
+    name is normalized; the score is included because one post can list two permits under
+    near-identical names on the same day (a camp and its kitchen) with different scores."""
+    score = rec.get("score")
     return "|".join([
-        (rec.get("name") or "").strip().lower(),
+        norm_name(rec.get("name")),
         clean_street(rec.get("street") or "").lower(),
         rec.get("date") or "",
         (rec.get("inspection_type") or "").lower(),
+        "" if score in (None, "") else str(score),
+        (rec.get("result_text") or "").lower(),
     ])
 
 

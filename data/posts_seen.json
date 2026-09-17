@@ -6,7 +6,7 @@
     "kind": "primary",
     "rows_in_table": 72,
     "rows_added": 72,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-for-september-2-2026/": {
     "post_id": 71354,
@@ -14,8 +14,8 @@
     "post_date": "2026-09-02",
     "kind": "primary",
     "rows_in_table": 59,
-    "rows_added": 58,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "rows_added": 59,
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-for-august-21-2026/": {
     "post_id": 70580,
@@ -24,7 +24,7 @@
     "kind": "primary",
     "rows_in_table": 60,
     "rows_added": 60,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-for-august-10-2026/": {
     "post_id": 69829,
@@ -33,7 +33,7 @@
     "kind": "primary",
     "rows_in_table": 86,
     "rows_added": 86,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-county-august-10-2026/": {
     "post_id": 69840,
@@ -42,7 +42,7 @@
     "kind": "secondary",
     "rows_in_table": 17,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-for-july-28-2026/": {
     "post_id": 68920,
@@ -51,7 +51,7 @@
     "kind": "primary",
     "rows_in_table": 43,
     "rows_added": 43,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-county-july-28-2026/": {
     "post_id": 68932,
@@ -60,7 +60,7 @@
     "kind": "secondary",
     "rows_in_table": 7,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wison-county-july-28-2026/": {
     "post_id": 68927,
@@ -69,7 +69,7 @@
     "kind": "secondary",
     "rows_in_table": 4,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-for-july-16-2026/": {
     "post_id": 68181,
@@ -78,7 +78,7 @@
     "kind": "primary",
     "rows_in_table": 63,
     "rows_added": 63,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-county-july-16-2026/": {
     "post_id": 68192,
@@ -87,7 +87,7 @@
     "kind": "secondary",
     "rows_in_table": 16,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wison-county-july-16-2026/": {
     "post_id": 68186,
@@ -96,7 +96,7 @@
     "kind": "secondary",
     "rows_in_table": 8,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-for-july-6-2026/": {
     "post_id": 67477,
@@ -104,8 +104,8 @@
     "post_date": "2026-07-06",
     "kind": "primary",
     "rows_in_table": 97,
-    "rows_added": 93,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "rows_added": 94,
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-county-july-6-2026/": {
     "post_id": 67487,
@@ -113,8 +113,8 @@
     "post_date": "2026-07-06",
     "kind": "secondary",
     "rows_in_table": 17,
-    "rows_added": 3,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "rows_added": 0,
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wison-county-july-6-2026/": {
     "post_id": 67482,
@@ -122,8 +122,8 @@
     "post_date": "2026-07-06",
     "kind": "secondary",
     "rows_in_table": 2,
-    "rows_added": 1,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "rows_added": 0,
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-june-22-2026/": {
     "post_id": 66474,
@@ -132,7 +132,7 @@
     "kind": "primary",
     "rows_in_table": 123,
     "rows_added": 123,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-june-22-2026/": {
     "post_id": 66476,
@@ -141,7 +141,7 @@
     "kind": "secondary",
     "rows_in_table": 29,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-june-10-2026/": {
     "post_id": 66041,
@@ -150,7 +150,7 @@
     "kind": "primary",
     "rows_in_table": 47,
     "rows_added": 47,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-june-10-2026/": {
     "post_id": 66045,
@@ -159,7 +159,7 @@
     "kind": "secondary",
     "rows_in_table": 11,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-may-29-2026/": {
     "post_id": 64940,
@@ -168,7 +168,7 @@
     "kind": "primary",
     "rows_in_table": 67,
     "rows_added": 67,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-may-29-2026/": {
     "post_id": 64948,
@@ -177,7 +177,7 @@
     "kind": "secondary",
     "rows_in_table": 14,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-may-18-2026/": {
     "post_id": 64404,
@@ -186,7 +186,7 @@
     "kind": "primary",
     "rows_in_table": 52,
     "rows_added": 52,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-may-18-2026/": {
     "post_id": 64406,
@@ -195,7 +195,7 @@
     "kind": "secondary",
     "rows_in_table": 10,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-may-5-2026/": {
     "post_id": 63645,
@@ -203,8 +203,8 @@
     "post_date": "2026-05-05",
     "kind": "primary",
     "rows_in_table": 55,
-    "rows_added": 54,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "rows_added": 55,
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-may-5-2026/": {
     "post_id": 63649,
@@ -213,7 +213,7 @@
     "kind": "secondary",
     "rows_in_table": 14,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-may-5-2026/": {
     "post_id": 63647,
@@ -222,7 +222,7 @@
     "kind": "secondary",
     "rows_in_table": 6,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-april-23-2026/": {
     "post_id": 63147,
@@ -231,7 +231,7 @@
     "kind": "primary",
     "rows_in_table": 49,
     "rows_added": 49,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-april-23-2026/": {
     "post_id": 63151,
@@ -240,7 +240,7 @@
     "kind": "secondary",
     "rows_in_table": 13,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-april-23-2026/": {
     "post_id": 63149,
@@ -249,7 +249,7 @@
     "kind": "secondary",
     "rows_in_table": 4,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-april-13-2026/": {
     "post_id": 62726,
@@ -258,7 +258,7 @@
     "kind": "primary",
     "rows_in_table": 75,
     "rows_added": 71,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-april-13-2026/": {
     "post_id": 62730,
@@ -267,7 +267,7 @@
     "kind": "secondary",
     "rows_in_table": 14,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-april-13-2026/": {
     "post_id": 62728,
@@ -276,7 +276,7 @@
     "kind": "secondary",
     "rows_in_table": 5,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-march-30-2026/": {
     "post_id": 62246,
@@ -284,8 +284,8 @@
     "post_date": "2026-03-30",
     "kind": "primary",
     "rows_in_table": 75,
-    "rows_added": 73,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "rows_added": 74,
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-march-30-2026/": {
     "post_id": 62251,
@@ -294,7 +294,7 @@
     "kind": "secondary",
     "rows_in_table": 14,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-march-30-2026/": {
     "post_id": 62249,
@@ -303,7 +303,7 @@
     "kind": "secondary",
     "rows_in_table": 7,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-march-18-2026/": {
     "post_id": 61714,
@@ -312,7 +312,7 @@
     "kind": "primary",
     "rows_in_table": 87,
     "rows_added": 84,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-march-18-2026/": {
     "post_id": 61719,
@@ -321,7 +321,7 @@
     "kind": "secondary",
     "rows_in_table": 17,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-march-18-2026/": {
     "post_id": 61716,
@@ -330,7 +330,7 @@
     "kind": "secondary",
     "rows_in_table": 7,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-march-6-2026/": {
     "post_id": 61271,
@@ -339,7 +339,7 @@
     "kind": "primary",
     "rows_in_table": 90,
     "rows_added": 89,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-march-6-2026/": {
     "post_id": 61276,
@@ -348,7 +348,7 @@
     "kind": "secondary",
     "rows_in_table": 32,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-march-6-2026/": {
     "post_id": 61273,
@@ -357,7 +357,7 @@
     "kind": "secondary",
     "rows_in_table": 9,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-february-23-2026/": {
     "post_id": 60574,
@@ -366,7 +366,7 @@
     "kind": "primary",
     "rows_in_table": 86,
     "rows_added": 86,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-feb-23-2026/": {
     "post_id": 60578,
@@ -375,7 +375,7 @@
     "kind": "secondary",
     "rows_in_table": 31,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-feb-23-2026/": {
     "post_id": 60577,
@@ -384,7 +384,7 @@
     "kind": "secondary",
     "rows_in_table": 3,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-january-29-2026/": {
     "post_id": 59763,
@@ -393,7 +393,7 @@
     "kind": "primary",
     "rows_in_table": 18,
     "rows_added": 18,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-january-19-2026/": {
     "post_id": 59359,
@@ -401,8 +401,8 @@
     "post_date": "2026-01-19",
     "kind": "primary",
     "rows_in_table": 55,
-    "rows_added": 51,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "rows_added": 52,
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-jan-19-2026/": {
     "post_id": 59361,
@@ -411,7 +411,7 @@
     "kind": "secondary",
     "rows_in_table": 14,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-january-7-2026/": {
     "post_id": 59012,
@@ -420,7 +420,7 @@
     "kind": "primary",
     "rows_in_table": 23,
     "rows_added": 23,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-december-23-2025/": {
     "post_id": 58641,
@@ -429,7 +429,7 @@
     "kind": "primary",
     "rows_in_table": 15,
     "rows_added": 13,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-december-15-2025/": {
     "post_id": 58274,
@@ -438,7 +438,7 @@
     "kind": "primary",
     "rows_in_table": 67,
     "rows_added": 67,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-dec-15-2025/": {
     "post_id": 58283,
@@ -447,7 +447,7 @@
     "kind": "secondary",
     "rows_in_table": 19,
     "rows_added": 19,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-dec-15-2025/": {
     "post_id": 58281,
@@ -456,7 +456,7 @@
     "kind": "secondary",
     "rows_in_table": 4,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:58Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-december-1-2025/": {
     "post_id": 57749,
@@ -465,7 +465,7 @@
     "kind": "primary",
     "rows_in_table": 35,
     "rows_added": 32,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-dec-1-2025/": {
     "post_id": 57753,
@@ -474,7 +474,7 @@
     "kind": "secondary",
     "rows_in_table": 3,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-dec-1-2025/": {
     "post_id": 57751,
@@ -483,7 +483,7 @@
     "kind": "secondary",
     "rows_in_table": 3,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-november-18-2025/": {
     "post_id": 57374,
@@ -492,7 +492,7 @@
     "kind": "primary",
     "rows_in_table": 56,
     "rows_added": 56,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-nov-18-2025/": {
     "post_id": 57379,
@@ -501,7 +501,7 @@
     "kind": "secondary",
     "rows_in_table": 18,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-nov-18-2025/": {
     "post_id": 57376,
@@ -510,7 +510,7 @@
     "kind": "secondary",
     "rows_in_table": 7,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-november-6-2025/": {
     "post_id": 56982,
@@ -519,7 +519,7 @@
     "kind": "primary",
     "rows_in_table": 59,
     "rows_added": 59,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-nov-6-2025/": {
     "post_id": 56988,
@@ -528,7 +528,7 @@
     "kind": "secondary",
     "rows_in_table": 10,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-nov-6-2025/": {
     "post_id": 56984,
@@ -536,8 +536,8 @@
     "post_date": "2025-11-06",
     "kind": "secondary",
     "rows_in_table": 6,
-    "rows_added": 1,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "rows_added": 2,
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-october-28-2025/": {
     "post_id": 56634,
@@ -545,8 +545,8 @@
     "post_date": "2025-10-28",
     "kind": "primary",
     "rows_in_table": 79,
-    "rows_added": 77,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "rows_added": 79,
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-oct-28-2025/": {
     "post_id": 56640,
@@ -555,7 +555,7 @@
     "kind": "secondary",
     "rows_in_table": 23,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-oct-28-2025/": {
     "post_id": 56638,
@@ -564,7 +564,7 @@
     "kind": "secondary",
     "rows_in_table": 9,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-october-13-2025/": {
     "post_id": 56123,
@@ -573,7 +573,7 @@
     "kind": "primary",
     "rows_in_table": 31,
     "rows_added": 31,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-oct-13-2025/": {
     "post_id": 56129,
@@ -582,7 +582,7 @@
     "kind": "secondary",
     "rows_in_table": 3,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-oct-13-2025/": {
     "post_id": 56128,
@@ -591,7 +591,7 @@
     "kind": "secondary",
     "rows_in_table": 3,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-october-1-2025/": {
     "post_id": 55755,
@@ -599,8 +599,8 @@
     "post_date": "2025-10-01",
     "kind": "primary",
     "rows_in_table": 52,
-    "rows_added": 49,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "rows_added": 51,
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-oct-1-2025/": {
     "post_id": 55760,
@@ -609,7 +609,7 @@
     "kind": "secondary",
     "rows_in_table": 10,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-oct-1-2025/": {
     "post_id": 55758,
@@ -618,7 +618,7 @@
     "kind": "secondary",
     "rows_in_table": 3,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-sept-19-2025/": {
     "post_id": 55360,
@@ -626,8 +626,8 @@
     "post_date": "2025-09-19",
     "kind": "primary",
     "rows_in_table": 124,
-    "rows_added": 121,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "rows_added": 124,
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-sept-19-2025/": {
     "post_id": 55364,
@@ -636,7 +636,7 @@
     "kind": "secondary",
     "rows_in_table": 31,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-sept-19-2025/": {
     "post_id": 55362,
@@ -645,7 +645,7 @@
     "kind": "secondary",
     "rows_in_table": 2,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-sept-8-2025/": {
     "post_id": 54922,
@@ -654,7 +654,7 @@
     "kind": "primary",
     "rows_in_table": 107,
     "rows_added": 86,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:56Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-sept-8-2025/": {
     "post_id": 54926,
@@ -663,7 +663,7 @@
     "kind": "secondary",
     "rows_in_table": 19,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-sept-8-2025/": {
     "post_id": 54924,
@@ -672,7 +672,7 @@
     "kind": "secondary",
     "rows_in_table": 2,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-august-26-2025/": {
     "post_id": 54475,
@@ -680,8 +680,8 @@
     "post_date": "2025-08-26",
     "kind": "primary",
     "rows_in_table": 66,
-    "rows_added": 64,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "rows_added": 65,
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-august-26-2025/": {
     "post_id": 54480,
@@ -690,7 +690,7 @@
     "kind": "secondary",
     "rows_in_table": 15,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-august-26-2025/": {
     "post_id": 54477,
@@ -699,7 +699,7 @@
     "kind": "secondary",
     "rows_in_table": 5,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-august-14-2025/": {
     "post_id": 54120,
@@ -708,7 +708,7 @@
     "kind": "primary",
     "rows_in_table": 52,
     "rows_added": 52,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-august-14-2025/": {
     "post_id": 54125,
@@ -717,7 +717,7 @@
     "kind": "secondary",
     "rows_in_table": 13,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-august-14-2025/": {
     "post_id": 54123,
@@ -726,7 +726,7 @@
     "kind": "secondary",
     "rows_in_table": 2,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-august-4-2025/": {
     "post_id": 53740,
@@ -735,7 +735,7 @@
     "kind": "primary",
     "rows_in_table": 43,
     "rows_added": 41,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-august-4-2025/": {
     "post_id": 53744,
@@ -744,7 +744,7 @@
     "kind": "secondary",
     "rows_in_table": 3,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-august-4-2025/": {
     "post_id": 53743,
@@ -753,7 +753,7 @@
     "kind": "secondary",
     "rows_in_table": 7,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-july-21-2025/": {
     "post_id": 53300,
@@ -762,7 +762,7 @@
     "kind": "primary",
     "rows_in_table": 65,
     "rows_added": 65,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-july-21-2025/": {
     "post_id": 53305,
@@ -770,8 +770,8 @@
     "post_date": "2025-07-21",
     "kind": "secondary",
     "rows_in_table": 16,
-    "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "rows_added": 1,
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-july-21-2025/": {
     "post_id": 53303,
@@ -780,7 +780,7 @@
     "kind": "secondary",
     "rows_in_table": 4,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:38Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-july-9-2025/": {
     "post_id": 52853,
@@ -788,8 +788,8 @@
     "post_date": "2025-07-09",
     "kind": "primary",
     "rows_in_table": 25,
-    "rows_added": 23,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "rows_added": 24,
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-july-9-2025/": {
     "post_id": 52855,
@@ -798,7 +798,7 @@
     "kind": "secondary",
     "rows_in_table": 1,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-june-30-2025/": {
     "post_id": 52633,
@@ -807,7 +807,7 @@
     "kind": "primary",
     "rows_in_table": 53,
     "rows_added": 53,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-june-30-2025/": {
     "post_id": 52635,
@@ -816,7 +816,7 @@
     "kind": "secondary",
     "rows_in_table": 6,
     "rows_added": 1,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-june-19-2025/": {
     "post_id": 52313,
@@ -825,7 +825,7 @@
     "kind": "primary",
     "rows_in_table": 111,
     "rows_added": 88,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-june-19-2025/": {
     "post_id": 52317,
@@ -834,7 +834,7 @@
     "kind": "secondary",
     "rows_in_table": 15,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-june-19-2025/": {
     "post_id": 52315,
@@ -843,7 +843,7 @@
     "kind": "secondary",
     "rows_in_table": 1,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-june-9-2025/": {
     "post_id": 51977,
@@ -852,7 +852,7 @@
     "kind": "secondary",
     "rows_in_table": 10,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-june-9-2025/": {
     "post_id": 51971,
@@ -860,8 +860,8 @@
     "post_date": "2025-06-09",
     "kind": "primary",
     "rows_in_table": 83,
-    "rows_added": 81,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "rows_added": 82,
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-june-9-2025/": {
     "post_id": 51973,
@@ -870,7 +870,7 @@
     "kind": "secondary",
     "rows_in_table": 3,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-may-30-2025/": {
     "post_id": 51692,
@@ -879,7 +879,7 @@
     "kind": "primary",
     "rows_in_table": 43,
     "rows_added": 42,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/perfect-health-scores-for-wilson-co-may-30-2025/": {
     "post_id": 51696,
@@ -888,7 +888,7 @@
     "kind": "secondary",
     "rows_in_table": 3,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-may-30-2025/": {
     "post_id": 51694,
@@ -897,7 +897,7 @@
     "kind": "secondary",
     "rows_in_table": 7,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-may-20-2025/": {
     "post_id": 51401,
@@ -906,7 +906,7 @@
     "kind": "primary",
     "rows_in_table": 47,
     "rows_added": 47,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/perfect-food-health-scores-for-wilson-co-may-20-2025/": {
     "post_id": 51405,
@@ -915,7 +915,7 @@
     "kind": "secondary",
     "rows_in_table": 12,
     "rows_added": 12,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-may-20-2025/": {
     "post_id": 51403,
@@ -924,7 +924,7 @@
     "kind": "secondary",
     "rows_in_table": 2,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-may-12-2025/": {
     "post_id": 51139,
@@ -933,7 +933,7 @@
     "kind": "primary",
     "rows_in_table": 56,
     "rows_added": 52,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/perfect-food-health-scores-for-wilson-co-may-12-2025/": {
     "post_id": 51147,
@@ -942,7 +942,7 @@
     "kind": "secondary",
     "rows_in_table": 13,
     "rows_added": 11,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-may-12-2025/": {
     "post_id": 51145,
@@ -951,7 +951,7 @@
     "kind": "secondary",
     "rows_in_table": 7,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-april-30-2025/": {
     "post_id": 50821,
@@ -960,7 +960,7 @@
     "kind": "primary",
     "rows_in_table": 63,
     "rows_added": 61,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/perfect-food-health-scores-for-wilson-co-april-30-2025/": {
     "post_id": 50826,
@@ -969,7 +969,7 @@
     "kind": "secondary",
     "rows_in_table": 12,
     "rows_added": 12,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-april-30-2025/": {
     "post_id": 50824,
@@ -978,7 +978,7 @@
     "kind": "secondary",
     "rows_in_table": 7,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-april-21-2025/": {
     "post_id": 50518,
@@ -986,8 +986,8 @@
     "post_date": "2025-04-21",
     "kind": "primary",
     "rows_in_table": 50,
-    "rows_added": 47,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "rows_added": 48,
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/perfect-food-health-scores-for-wilson-co-april-21-2025/": {
     "post_id": 50526,
@@ -996,7 +996,7 @@
     "kind": "secondary",
     "rows_in_table": 7,
     "rows_added": 7,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-april-21-2025/": {
     "post_id": 50522,
@@ -1005,7 +1005,7 @@
     "kind": "secondary",
     "rows_in_table": 3,
     "rows_added": 3,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-april-10-2025/": {
     "post_id": 50190,
@@ -1013,8 +1013,8 @@
     "post_date": "2025-04-10",
     "kind": "primary",
     "rows_in_table": 68,
-    "rows_added": 63,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "rows_added": 64,
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-april-10-2025/": {
     "post_id": 50192,
@@ -1023,7 +1023,7 @@
     "kind": "secondary",
     "rows_in_table": 3,
     "rows_added": 3,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-march-31-2025/": {
     "post_id": 49837,
@@ -1031,8 +1031,8 @@
     "post_date": "2025-03-31",
     "kind": "primary",
     "rows_in_table": 25,
-    "rows_added": 24,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "rows_added": 25,
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-march-21-2025/": {
     "post_id": 49563,
@@ -1040,8 +1040,8 @@
     "post_date": "2025-03-21",
     "kind": "primary",
     "rows_in_table": 66,
-    "rows_added": 62,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "rows_added": 63,
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-march-11-2025/": {
     "post_id": 49171,
@@ -1050,7 +1050,7 @@
     "kind": "primary",
     "rows_in_table": 57,
     "rows_added": 54,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-march-11-2025/": {
     "post_id": 49173,
@@ -1059,7 +1059,7 @@
     "kind": "secondary",
     "rows_in_table": 5,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-march-3-2025/": {
     "post_id": 48892,
@@ -1067,8 +1067,8 @@
     "post_date": "2025-03-03",
     "kind": "primary",
     "rows_in_table": 54,
-    "rows_added": 53,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "rows_added": 54,
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-march-3-2025/": {
     "post_id": 48896,
@@ -1077,7 +1077,7 @@
     "kind": "secondary",
     "rows_in_table": 4,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-february-20-2025/": {
     "post_id": 48566,
@@ -1086,7 +1086,7 @@
     "kind": "primary",
     "rows_in_table": 50,
     "rows_added": 50,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-feb-20-2025/": {
     "post_id": 48568,
@@ -1095,7 +1095,7 @@
     "kind": "secondary",
     "rows_in_table": 3,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-february-10-2025/": {
     "post_id": 48194,
@@ -1103,8 +1103,8 @@
     "post_date": "2025-02-10",
     "kind": "primary",
     "rows_in_table": 177,
-    "rows_added": 176,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "rows_added": 177,
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-feb-10-2025/": {
     "post_id": 48196,
@@ -1113,7 +1113,7 @@
     "kind": "secondary",
     "rows_in_table": 8,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-january-30-2025/": {
     "post_id": 47835,
@@ -1122,7 +1122,7 @@
     "kind": "primary",
     "rows_in_table": 52,
     "rows_added": 52,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/lowest-food-health-scores-for-wilson-co-jan-30-2025/": {
     "post_id": 47837,
@@ -1131,7 +1131,7 @@
     "kind": "secondary",
     "rows_in_table": 5,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-january-20-2025/": {
     "post_id": 47523,
@@ -1140,7 +1140,7 @@
     "kind": "primary",
     "rows_in_table": 43,
     "rows_added": 43,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-january-10-2025/": {
     "post_id": 47288,
@@ -1148,8 +1148,8 @@
     "post_date": "2025-01-10",
     "kind": "primary",
     "rows_in_table": 40,
-    "rows_added": 39,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "rows_added": 40,
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-january-3-2025/": {
     "post_id": 47014,
@@ -1158,7 +1158,7 @@
     "kind": "primary",
     "rows_in_table": 13,
     "rows_added": 13,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-december-23-2024/": {
     "post_id": 46773,
@@ -1167,7 +1167,7 @@
     "kind": "primary",
     "rows_in_table": 35,
     "rows_added": 34,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-december-11-2024/": {
     "post_id": 46417,
@@ -1176,7 +1176,7 @@
     "kind": "primary",
     "rows_in_table": 43,
     "rows_added": 34,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-december-2-2024/": {
     "post_id": 46121,
@@ -1185,7 +1185,7 @@
     "kind": "primary",
     "rows_in_table": 39,
     "rows_added": 36,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-november-21-2024/": {
     "post_id": 45851,
@@ -1194,7 +1194,7 @@
     "kind": "primary",
     "rows_in_table": 52,
     "rows_added": 52,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/5-lowest-food-health-scores-for-wilson-county-nov-21-2024/": {
     "post_id": 45853,
@@ -1203,7 +1203,7 @@
     "kind": "secondary",
     "rows_in_table": 5,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-swimming-pools-nov-11-2024/": {
     "post_id": 45546,
@@ -1212,7 +1212,7 @@
     "kind": "primary",
     "rows_in_table": 17,
     "rows_added": 17,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-november-11-2024/": {
     "post_id": 45542,
@@ -1221,7 +1221,7 @@
     "kind": "primary",
     "rows_in_table": 47,
     "rows_added": 30,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:55Z"
   },
   "https://wilsoncountysource.com/5-lowest-food-health-scores-for-wilson-county-nov-11-2024/": {
     "post_id": 45544,
@@ -1230,7 +1230,7 @@
     "kind": "secondary",
     "rows_in_table": 6,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-november-1-2024/": {
     "post_id": 45314,
@@ -1239,7 +1239,7 @@
     "kind": "primary",
     "rows_in_table": 42,
     "rows_added": 42,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/5-lowest-food-health-scores-for-wilson-county-nov-1-2024/": {
     "post_id": 45316,
@@ -1248,7 +1248,7 @@
     "kind": "secondary",
     "rows_in_table": 6,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-oct-22-2024/": {
     "post_id": 44955,
@@ -1256,8 +1256,8 @@
     "post_date": "2024-10-22",
     "kind": "primary",
     "rows_in_table": 43,
-    "rows_added": 39,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "rows_added": 43,
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/5-lowest-food-health-scores-for-wilson-county-oct-22-2024/": {
     "post_id": 44960,
@@ -1266,7 +1266,7 @@
     "kind": "secondary",
     "rows_in_table": 6,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-swimming-pools-oct-14-2024/": {
     "post_id": 44654,
@@ -1275,7 +1275,7 @@
     "kind": "primary",
     "rows_in_table": 25,
     "rows_added": 24,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-oct-14-2024/": {
     "post_id": 44650,
@@ -1284,7 +1284,7 @@
     "kind": "primary",
     "rows_in_table": 61,
     "rows_added": 33,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/5-lowest-food-health-scores-for-wilson-county-oct-14-2024/": {
     "post_id": 44652,
@@ -1293,7 +1293,7 @@
     "kind": "secondary",
     "rows_in_table": 5,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-swimming-pools-oct-2-2024/": {
     "post_id": 44225,
@@ -1302,7 +1302,7 @@
     "kind": "primary",
     "rows_in_table": 29,
     "rows_added": 29,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-oct-2-2024/": {
     "post_id": 44221,
@@ -1310,8 +1310,8 @@
     "post_date": "2024-10-02",
     "kind": "primary",
     "rows_in_table": 82,
-    "rows_added": 52,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "rows_added": 53,
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/5-lowest-food-health-scores-for-wilson-county-oct-2-2024/": {
     "post_id": 44223,
@@ -1320,7 +1320,7 @@
     "kind": "secondary",
     "rows_in_table": 5,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-swimming-pools-sept-23/": {
     "post_id": 43834,
@@ -1329,7 +1329,7 @@
     "kind": "primary",
     "rows_in_table": 16,
     "rows_added": 16,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-september-23-2024/": {
     "post_id": 43830,
@@ -1337,8 +1337,8 @@
     "post_date": "2024-09-23",
     "kind": "primary",
     "rows_in_table": 72,
-    "rows_added": 54,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "rows_added": 56,
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/5-lowest-food-health-scores-for-wilson-county-sept-23-2024/": {
     "post_id": 43832,
@@ -1347,7 +1347,7 @@
     "kind": "secondary",
     "rows_in_table": 5,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-swimming-pools-september-12-2024/": {
     "post_id": 43478,
@@ -1356,7 +1356,7 @@
     "kind": "primary",
     "rows_in_table": 39,
     "rows_added": 39,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-september-12-2024/": {
     "post_id": 43472,
@@ -1365,7 +1365,7 @@
     "kind": "primary",
     "rows_in_table": 96,
     "rows_added": 57,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/5-lowest-food-health-scores-for-wilson-county-sept-12-2024/": {
     "post_id": 43474,
@@ -1374,7 +1374,7 @@
     "kind": "secondary",
     "rows_in_table": 5,
     "rows_added": 0,
-    "scraped_at": "2026-09-16T22:01:37Z"
+    "scraped_at": "2026-09-17T19:13:57Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-swimming-pools-september-3-2024/": {
     "post_id": 43113,
@@ -1383,7 +1383,7 @@
     "kind": "primary",
     "rows_in_table": 18,
     "rows_added": 18,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-september-3-2024/": {
     "post_id": 43111,
@@ -1391,8 +1391,8 @@
     "post_date": "2024-09-03",
     "kind": "primary",
     "rows_in_table": 61,
-    "rows_added": 42,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "rows_added": 43,
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-scores-wilson-county-swimming-pools-august-23-2024/": {
     "post_id": 42753,
@@ -1401,7 +1401,7 @@
     "kind": "primary",
     "rows_in_table": 19,
     "rows_added": 19,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-august-23-2024/": {
     "post_id": 42749,
@@ -1409,8 +1409,8 @@
     "post_date": "2024-08-23",
     "kind": "primary",
     "rows_in_table": 65,
-    "rows_added": 43,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "rows_added": 45,
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-swimming-pools-august-13-2024/": {
     "post_id": 42394,
@@ -1419,7 +1419,7 @@
     "kind": "primary",
     "rows_in_table": 66,
     "rows_added": 66,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-august-13-2024/": {
     "post_id": 42392,
@@ -1428,7 +1428,7 @@
     "kind": "primary",
     "rows_in_table": 85,
     "rows_added": 19,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-swimming-pools-august-5-2024/": {
     "post_id": 42143,
@@ -1437,7 +1437,7 @@
     "kind": "primary",
     "rows_in_table": 47,
     "rows_added": 47,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-august-5-2024/": {
     "post_id": 42139,
@@ -1446,7 +1446,7 @@
     "kind": "primary",
     "rows_in_table": 68,
     "rows_added": 20,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-swimming-pools-july-26-2024/": {
     "post_id": 41837,
@@ -1455,7 +1455,7 @@
     "kind": "primary",
     "rows_in_table": 28,
     "rows_added": 28,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-july-26-2024/": {
     "post_id": 41835,
@@ -1464,7 +1464,7 @@
     "kind": "primary",
     "rows_in_table": 58,
     "rows_added": 30,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-public-swimming-pools-july-15-2024/": {
     "post_id": 41444,
@@ -1473,7 +1473,7 @@
     "kind": "primary",
     "rows_in_table": 79,
     "rows_added": 79,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-july-15-2024/": {
     "post_id": 41440,
@@ -1481,8 +1481,8 @@
     "post_date": "2024-07-15",
     "kind": "primary",
     "rows_in_table": 87,
-    "rows_added": 7,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "rows_added": 8,
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-tattoo-studios-july-4-2024/": {
     "post_id": 41119,
@@ -1491,7 +1491,7 @@
     "kind": "primary",
     "rows_in_table": 8,
     "rows_added": 8,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-public-swimming-pools-july-4-2024/": {
     "post_id": 41117,
@@ -1500,7 +1500,7 @@
     "kind": "primary",
     "rows_in_table": 60,
     "rows_added": 60,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-july-4-2024/": {
     "post_id": 41115,
@@ -1509,7 +1509,7 @@
     "kind": "primary",
     "rows_in_table": 80,
     "rows_added": 12,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-public-swimming-pools-june-24-2024/": {
     "post_id": 40674,
@@ -1518,7 +1518,7 @@
     "kind": "primary",
     "rows_in_table": 34,
     "rows_added": 34,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-june-24-2024/": {
     "post_id": 40669,
@@ -1527,7 +1527,7 @@
     "kind": "primary",
     "rows_in_table": 39,
     "rows_added": 5,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-public-swimming-pools-june-14-2024/": {
     "post_id": 40386,
@@ -1536,7 +1536,7 @@
     "kind": "primary",
     "rows_in_table": 95,
     "rows_added": 93,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-june-14-2024/": {
     "post_id": 40384,
@@ -1545,7 +1545,7 @@
     "kind": "primary",
     "rows_in_table": 126,
     "rows_added": 106,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-june-4-2024/": {
     "post_id": 39916,
@@ -1554,7 +1554,7 @@
     "kind": "primary",
     "rows_in_table": 101,
     "rows_added": 101,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:54Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-may-27-2024/": {
     "post_id": 39598,
@@ -1563,7 +1563,7 @@
     "kind": "primary",
     "rows_in_table": 69,
     "rows_added": 62,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:53Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-may-15-2024/": {
     "post_id": 39131,
@@ -1572,7 +1572,7 @@
     "kind": "primary",
     "rows_in_table": 47,
     "rows_added": 45,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:53Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-may-6-2024/": {
     "post_id": 38743,
@@ -1581,7 +1581,7 @@
     "kind": "primary",
     "rows_in_table": 49,
     "rows_added": 49,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:53Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-april-25-2024/": {
     "post_id": 38357,
@@ -1590,7 +1590,7 @@
     "kind": "primary",
     "rows_in_table": 49,
     "rows_added": 48,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:53Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-april-15-2024/": {
     "post_id": 37961,
@@ -1599,7 +1599,7 @@
     "kind": "primary",
     "rows_in_table": 43,
     "rows_added": 43,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:53Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-april-5-2024/": {
     "post_id": 37587,
@@ -1607,8 +1607,8 @@
     "post_date": "2024-04-05",
     "kind": "primary",
     "rows_in_table": 53,
-    "rows_added": 50,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "rows_added": 52,
+    "scraped_at": "2026-09-17T19:13:53Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-march-26-2024/": {
     "post_id": 37203,
@@ -1617,7 +1617,7 @@
     "kind": "primary",
     "rows_in_table": 45,
     "rows_added": 44,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:53Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-march-16-2024/": {
     "post_id": 36836,
@@ -1625,8 +1625,8 @@
     "post_date": "2024-03-16",
     "kind": "primary",
     "rows_in_table": 69,
-    "rows_added": 60,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "rows_added": 61,
+    "scraped_at": "2026-09-17T19:13:53Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-march-6-2024/": {
     "post_id": 36408,
@@ -1634,8 +1634,8 @@
     "post_date": "2024-03-06",
     "kind": "primary",
     "rows_in_table": 66,
-    "rows_added": 64,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "rows_added": 65,
+    "scraped_at": "2026-09-17T19:13:53Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-february-26-2024/": {
     "post_id": 36054,
@@ -1643,8 +1643,8 @@
     "post_date": "2024-02-26",
     "kind": "primary",
     "rows_in_table": 57,
-    "rows_added": 51,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "rows_added": 52,
+    "scraped_at": "2026-09-17T19:13:53Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-february-15-2024/": {
     "post_id": 35638,
@@ -1653,7 +1653,7 @@
     "kind": "primary",
     "rows_in_table": 69,
     "rows_added": 66,
-    "scraped_at": "2026-09-16T22:01:36Z"
+    "scraped_at": "2026-09-17T19:13:53Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-february-5-2024/": {
     "post_id": 35276,
@@ -1661,8 +1661,8 @@
     "post_date": "2024-02-05",
     "kind": "primary",
     "rows_in_table": 51,
-    "rows_added": 47,
-    "scraped_at": "2026-09-16T22:01:35Z"
+    "rows_added": 48,
+    "scraped_at": "2026-09-17T19:13:53Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-january-26-2024/": {
     "post_id": 34954,
@@ -1671,7 +1671,7 @@
     "kind": "primary",
     "rows_in_table": 41,
     "rows_added": 37,
-    "scraped_at": "2026-09-16T22:01:35Z"
+    "scraped_at": "2026-09-17T19:13:53Z"
   },
   "https://wilsoncountysource.com/health-inspections-wilson-county-january-16-2024/": {
     "post_id": 34538,
@@ -1680,6 +1680,6 @@
     "kind": "primary",
     "rows_in_table": 54,
     "rows_added": 53,
-    "scraped_at": "2026-09-16T22:01:35Z"
+    "scraped_at": "2026-09-17T19:13:53Z"
   }
 }
