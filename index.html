@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wilson County Health Inspection Tracker | Royal Blue Analytics</title>
 <meta name="description" content="Look up any restaurant, pool, hotel, or child care facility in Wilson County, Tennessee and see its health inspection history. Independent demo by Royal Blue Analytics.">
+<meta name="theme-color" content="#253B8E">
+<meta property="og:title" content="Wilson County Health Inspection Tracker">
+<meta property="og:description" content="Look up any restaurant, pool, hotel, or child care facility in Wilson County, TN and see its full health inspection history.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sqlsekou.github.io/wilson-health-tracker/">
+<meta property="og:image" content="https://sqlsekou.github.io/wilson-health-tracker/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>
   :root{
@@ -106,6 +113,39 @@
   .hist-list .row:first-child{border-top:none}
   .hist-list .row small{display:block;color:var(--muted);font-size:11px}
   .hist-note{font-size:11px;color:var(--muted);margin-top:10px}
+
+  /* Interactive selection states */
+  .kpi{cursor:pointer;transition:transform .12s,box-shadow .12s;text-align:left;font:inherit;color:inherit;width:100%}
+  .kpi:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(16,24,40,.10)}
+  .kpi.on{outline:2px solid var(--brand);outline-offset:-2px;background:var(--brand-soft)}
+  .kpi.on.good{outline-color:var(--good)} .kpi.on.warn{outline-color:var(--warn)} .kpi.on.bad{outline-color:var(--bad)}
+  .kpi .hint-l{font-size:10px;color:var(--muted);margin-top:auto;padding-top:4px;opacity:0;transition:opacity .12s}
+  .kpi:hover .hint-l,.kpi.on .hint-l{opacity:1}
+  .col{cursor:pointer;border-radius:6px 6px 0 0}
+  .col:hover .bar{filter:brightness(1.12)}
+  .cols.has-sel .col:not(.on) .bar{opacity:.28}
+  .cols.has-sel .col:not(.on) .val{color:var(--muted)}
+  .col.on .val{color:var(--text)}
+  .xl span.on{color:var(--text);font-weight:700}
+  .cols.has-sel ~ .xl span:not(.on){opacity:.6}
+  .hrow.click.on{background:var(--brand-soft)}
+  :focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:11px;color:var(--muted);min-height:0}
+  .chips:empty{display:none}
+  .chip-f{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--border);border-radius:50px;padding:4px 6px 4px 10px;font-size:11px;font-weight:600;color:var(--text)}
+  .chip-f button{border:none;background:var(--track);color:var(--muted);width:16px;height:16px;border-radius:50%;cursor:pointer;font-size:11px;line-height:16px;padding:0}
+  .chip-f button:hover{background:var(--bad-soft);color:var(--bad)}
+  .chips .clear{border:none;background:none;color:var(--brand);font-weight:600;cursor:pointer;font-size:11px}
+  :root[data-theme="dark"] .chips .clear{color:#8FA4F0}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .chips .clear{color:#8FA4F0} }
+  .updated{font-size:10px;color:rgba(255,255,255,.7);margin-top:6px}
+  .updated b{color:#fff;font-weight:600}
+  .trend{font-size:10px;font-weight:700;margin-left:6px}
+  .trend.up{color:var(--good)} .trend.down{color:var(--bad)} .trend.flat{color:var(--muted);font-weight:500}
+  td .chip.sm{min-width:40px}
+  .tbl-actions{display:flex;gap:6px;align-items:center}
+  .btn.sm{font-size:11px;padding:4px 10px}
+  @media print{ .filters,.search-panel,.foot,.map-wrap{display:none} body{padding:0} }
 
   /* Filters */
   .filters{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:10px 12px;box-shadow:var(--shadow)}
@@ -219,6 +259,7 @@
     <div>
       <h1>Wilson County Health Inspection Tracker</h1>
       <p id="subtitle">Restaurant, pool, lodging, and facility inspections</p>
+      <p class="updated" id="updated"></p>
     </div>
     <a class="rba" id="headerBrand" href="https://royalblueanalytics.com" target="_blank" rel="noopener">
       <img src="assets/rba-logo-light.png" alt="" onerror="this.parentNode.classList.add('nologo')">
@@ -270,18 +311,19 @@
     <div class="f-group"><span class="f-label">Category</span><div class="seg" id="typeSeg"></div></div>
     <span class="f-scope" id="scope"></span>
   </section>
+  <div class="chips" id="chips" aria-live="polite"></div>
 
-  <section class="kpis">
-    <div class="kpi"><span class="l">Inspections</span><span class="v" id="kCount">0</span><span class="s" id="kCountSub"></span></div>
-    <div class="kpi good"><span class="l">Scored 90 or better</span><span class="v" id="kPass">0</span><span class="s" id="kPassSub"></span></div>
-    <div class="kpi warn"><span class="l">Scored below 80</span><span class="v" id="kLow">0</span><span class="s" id="kLowSub"></span></div>
-    <div class="kpi bad"><span class="l">Failed follow-ups</span><span class="v" id="kZero">0</span><span class="s" id="kZeroSub"></span></div>
+  <section class="kpis" aria-label="Summary, click a card to filter the map and table">
+    <button class="kpi" data-sel="all"><span class="l">Inspections</span><span class="v" id="kCount">0</span><span class="s" id="kCountSub"></span><span class="hint-l">Show everything in this view</span></button>
+    <button class="kpi good" data-sel="pass"><span class="l">Scored 90 or better</span><span class="v" id="kPass">0</span><span class="s" id="kPassSub"></span><span class="hint-l">Click to list them</span></button>
+    <button class="kpi warn" data-sel="low"><span class="l">Scored below 80</span><span class="v" id="kLow">0</span><span class="s" id="kLowSub"></span><span class="hint-l">Click to list them</span></button>
+    <button class="kpi bad" data-sel="zero"><span class="l">Failed follow-ups</span><span class="v" id="kZero">0</span><span class="s" id="kZeroSub"></span><span class="hint-l">Click to list them</span></button>
   </section>
 
   <section class="panel pad">
     <div class="grid3">
       <div class="box">
-        <h3>Where scores land</h3><div class="sub">Scored inspections by band. Most places pass comfortably; the left tail is the story.</div>
+        <h3>Where scores land</h3><div class="sub">Scored inspections by band. Click a bar to see those inspections below.</div>
         <div class="cols" id="distChart"></div><div class="xl" id="distLabels"></div>
       </div>
       <div class="box">
@@ -290,7 +332,7 @@
         <div class="note" id="zeroNote"></div>
       </div>
       <div class="box">
-        <h3>How cities compare</h3><div class="sub">Share of scored inspections at 90 or better, with how many that is based on</div>
+        <h3>How cities compare</h3><div class="sub">Share of scored inspections at 90 or better. Click a city to focus on it.</div>
         <div class="hbars" id="cityChart"></div>
       </div>
     </div>
@@ -312,7 +354,8 @@
 
     <div class="panel pad">
       <div class="map-head">
-        <div><h3>All inspections in this view</h3><div class="sub" id="tableCount"></div></div>
+        <div><h3 id="tableTitle">All inspections in this view</h3><div class="sub" id="tableCount"></div></div>
+        <div class="tbl-actions"><button class="btn sm" id="csvBtn" title="Download the rows in this table as a CSV file">Download CSV</button></div>
       </div>
       <div class="table-wrap">
         <table>
@@ -354,8 +397,19 @@
 <script>
 // Data is loaded from data/inspections.json, built by scripts/build.py.
 // row: [name, score|null, resultText, street, city, zip, facilityType, inspectionType, date, lat|null, lon|null]
-let DATA = [], META = {}, MAIN_CITIES = [], LATEST = null, PLACES = {}, PLACE_LIST = [];
-const state = { period:'90', city:'All', type:'All', q:'', sortK:8, sortDir:-1, place:null };
+let DATA = [], META = {}, MAIN_CITIES = [], LATEST = null, PLACES = {}, PLACE_LIST = [], PREV = new Map(), TABLE_ROWS = [];
+const state = { period:'90', city:'All', type:'All', q:'', sortK:8, sortDir:-1, place:null, sel:null };
+// sel: a cross-filter picked from a KPI card or a chart bar. It narrows the map and table,
+// while the KPIs and charts keep showing the full view so the selection stays in context.
+const SELS = {
+  pass: { label:'Scored 90 or better', test: r => scored(r) && r[1] >= 90 },
+  low:  { label:'Scored below 80',     test: r => scored(r) && r[1] < 80 },
+  zero: { label:'Failed follow-ups',   test: r => isZero(r) },
+};
+const BANDS = [['<70',1,69,'bad','under 70'],['70s',70,79,'warn','70 to 79'],['80s',80,89,'warn','80 to 89'],['90-94',90,94,'','90 to 94'],['95-99',95,99,'','95 to 99'],['100',100,100,'','100']];
+BANDS.forEach(([l,a,b,c,words]) => SELS['band:'+l] = { label:`Scored ${words}`, test: r => scored(r) && r[1] >= a && r[1] <= b });
+const selMatch = r => !state.sel || !SELS[state.sel] || SELS[state.sel].test(r);
+function setSel(key){ state.sel = (key === 'all' || state.sel === key) ? null : key; render(true); }
 
 // A score of 0 only appears on failed follow-ups (pools and lodging that must fix something
 // before reopening). It is a status, not a score, so it never enters averages or rates.
@@ -398,6 +452,7 @@ function cityMatch(r){
 function filtered(ignoreCity){
   return periodRows().filter(r => (ignoreCity || cityMatch(r)) && (state.type==='All' || catOf(r)===state.type));
 }
+const viewRows = () => filtered(false).filter(selMatch);  // what the map and table show
 
 // ---------------------------------------------------------------- places (one per name + address)
 function cleanStreet(s){
@@ -417,9 +472,13 @@ function buildPlaces(){
     const k = placeKey(r);
     (PLACES[k] ||= { key:k, name:r[0].trim(), street:r[3], city:r[4], zip:r[5], fac:r[6], rows:[] }).rows.push(r);
   });
+  PREV = new Map();
   Object.values(PLACES).forEach(p => {
     p.rows.sort((a,b) => a[8] < b[8] ? 1 : -1);
     p.latest = p.rows[0];
+    // previous scored visit for each row, so the table can show the change since last time
+    let prev = null;
+    [...p.rows].reverse().forEach(r => { if (prev) PREV.set(r, prev); if (scored(r)) prev = r; });
     p.name = p.latest[0].trim();  // display the most recent spelling
     p.search = `${p.name} ${normName(p.name)} ${p.street} ${p.city}`.toLowerCase();
   });
@@ -455,11 +514,13 @@ function choosePlace(key){
   const p = PLACES[key];
   el('search').value = p.name; state.q = p.name;
   renderDetail(p);
-  renderTable(filtered(false));
+  renderTable(viewRows());
+  writeHash();
   locate(addrKey(p.latest), false);
 }
 function clearPlace(){
   state.place = null; el('detail').hidden = true;
+  writeHash();
   postHeight();
 }
 
@@ -526,24 +587,32 @@ function renderKPIs(rows){
   el('kLowSub').textContent = s.length ? `${pct(low.length, s.length)} of scored · ${new Set(low.map(placeKey)).size} place${new Set(low.map(placeKey)).size===1?'':'s'}` : '';
   el('kZero').textContent = zeros.length.toLocaleString();
   el('kZeroSub').textContent = zeros.length ? `scored 0 on reinspection, usually closed until fixed` : 'None in this selection';
+  document.querySelectorAll('.kpi').forEach(k => {
+    const on = k.dataset.sel === state.sel || (k.dataset.sel === 'all' && !state.sel);
+    k.classList.toggle('on', on);
+    k.setAttribute('aria-pressed', on);
+    k.querySelector('.hint-l').textContent = k.dataset.sel === 'all' ? (on ? 'Showing everything in this view' : 'Click to clear the selection') : on ? 'Click again to clear' : 'Click to list them';
+  });
 }
 
 function hbars(id, items, onClick){
   const box = el(id);
   if (!items.length){ box.innerHTML = '<div class="empty">Nothing to show for this selection.</div>'; return; }
-  box.innerHTML = items.map((i, n) => `<div class="hrow ${onClick?'click':''}" data-n="${n}" title="${esc(i.title || i.name)}"><div class="hn">${esc(i.name)}${i.sub?`<small>${esc(i.sub)}</small>`:''}</div>
+  box.innerHTML = items.map((i, n) => `<div class="hrow ${onClick?'click':''} ${i.on?'on':''}" data-n="${n}" ${onClick?'role="button" tabindex="0"':''} title="${esc(i.title || i.name)}"><div class="hn">${esc(i.name)}${i.sub?`<small>${esc(i.sub)}</small>`:''}</div>
     <div class="ht"><div class="hf ${i.cls||''}" style="width:${Math.max(2,i.v)}%"></div></div><div class="hv">${i.label ?? i.v}</div></div>`).join('');
-  if (onClick) box.querySelectorAll('.hrow').forEach(r => r.onclick = () => onClick(items[+r.dataset.n]));
+  if (onClick) box.querySelectorAll('.hrow').forEach(r => { r.onclick = () => onClick(items[+r.dataset.n]); r.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { onClick(items[+r.dataset.n]); e.preventDefault(); } }; });
 }
 
 function renderStory(rows){
   const s = rows.filter(scored);
-  const bands = [['<70',1,69,'bad'],['70s',70,79,'warn'],['80s',80,89,'warn'],['90-94',90,94,''],['95-99',95,99,''],['100',100,100,'']];
-  const items = bands.map(([l,a,b,c]) => ({l, v:s.filter(r=>r[1]>=a&&r[1]<=b).length, c}));
+  const items = BANDS.map(([l,a,b,c]) => ({l, v:s.filter(r=>r[1]>=a&&r[1]<=b).length, c, key:'band:'+l}));
   const max = Math.max(1, ...items.map(i=>i.v));
+  const hasSel = items.some(i => i.key === state.sel);
+  el('distChart').className = 'cols' + (hasSel ? ' has-sel' : '');
   el('distChart').innerHTML = items.map(i =>
-    `<div class="col" title="${i.l}: ${i.v.toLocaleString()}"><div class="val">${i.v ? i.v.toLocaleString() : ''}</div><div class="bar ${i.c}" style="height:${i.v/max*82}%"></div></div>`).join('');
-  el('distLabels').innerHTML = items.map(i => `<span>${i.l}</span>`).join('');
+    `<div class="col ${i.key===state.sel?'on':''}" role="button" tabindex="0" data-sel="${i.key}" title="${i.l}: ${i.v.toLocaleString()} inspections, click to list them"><div class="val">${i.v ? i.v.toLocaleString() : ''}</div><div class="bar ${i.c}" style="height:${i.v/max*82}%"></div></div>`).join('');
+  el('distLabels').innerHTML = items.map(i => `<span class="${i.key===state.sel?'on':''}">${i.l}</span>`).join('');
+  el('distChart').querySelectorAll('.col').forEach(c => { c.onclick = () => setSel(c.dataset.sel); c.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { setSel(c.dataset.sel); e.preventDefault(); } }; });
 
   // Places to watch: each place's most recent visit in this view, lowest real scores first
   const latest = {};
@@ -557,7 +626,7 @@ function renderStory(rows){
     ? `Not shown above: ${zeros.length} failed follow-up${zeros.length>1?'s':''} at ${zp} place${zp>1?'s':''} (mostly pools) scored 0. <button type="button" id="zeroBtn">List them</button>`
     : 'No failed follow-ups in this view.';
   const zb = el('zeroBtn');
-  if (zb) zb.onclick = () => { state.sortK = 1; state.sortDir = 1; renderTable(filtered(false)); document.querySelector('.table-wrap').scrollIntoView({ behavior:'smooth', block:'nearest' }); };
+  if (zb) zb.onclick = () => { setSel('zero'); document.querySelector('.table-wrap').scrollIntoView({ behavior:'smooth', block:'nearest' }); };
 
   // Cities: pass rate with the base shown, so a high rate on 4 inspections reads as what it is
   const cr = filtered(true).filter(scored);
@@ -567,8 +636,8 @@ function renderStory(rows){
   Object.keys(byCity).forEach(c => { if (c !== 'Other' && byCity[c].length < 20 && state.city !== c) { (byCity.Other ||= []).push(...byCity[c]); delete byCity[c]; } });
   hbars('cityChart', Object.entries(byCity).map(([c, xs]) => {
     const p = xs.filter(x => x >= 90).length / xs.length * 100;
-    return { name:c === 'Other' ? 'Other cities' : c, sub:`${xs.length.toLocaleString()} scored inspection${xs.length>1?'s':''}`, v:p, label:Math.round(p)+'%', cls:(state.city==='All'||state.city===c)?'good':'muted', title:`${c}: ${Math.round(p)}% of ${xs.length} scored 90 or better` };
-  }).sort((a,b)=>b.v-a.v));
+    return { name:c === 'Other' ? 'Other cities' : c, sub:`${xs.length.toLocaleString()} scored inspection${xs.length>1?'s':''}`, v:p, label:Math.round(p)+'%', cls:(state.city==='All'||state.city===c)?'good':'muted', on:state.city===c, city:c, title:`${c}: ${Math.round(p)}% of ${xs.length} scored 90 or better. Click to focus on ${c}.` };
+  }).sort((a,b)=>b.v-a.v), i => { state.city = state.city === i.city ? 'All' : i.city; render(true); });
 }
 
 function renderTable(rows){
@@ -579,11 +648,15 @@ function renderTable(rows){
   t = t.sort((a,b) => (k===1 ? ((a[1]??999)-(b[1]??999))*d : k===6 ? catOf(a).localeCompare(catOf(b))*d : String(a[k]).localeCompare(String(b[k]))*d) || (a[8] < b[8] ? 1 : -1));
   el('tbody').innerHTML = t.slice(0, TABLE_LIMIT).map(r => {
     const addr = r[3] ? `<a href="${gmaps(r)}" target="_blank" rel="noopener">${esc(r[3])}</a>` : 'Address not listed';
+    const pv = PREV.get(r);
+    const trend = scored(r) && pv ? (r[1] > pv[1] ? `<span class="trend up" title="Up from ${pv[1]} on ${fmtDate(pv[8])}">▲${r[1]-pv[1]}</span>` : r[1] < pv[1] ? `<span class="trend down" title="Down from ${pv[1]} on ${fmtDate(pv[8])}">▼${pv[1]-r[1]}</span>` : `<span class="trend flat" title="Same as ${fmtDate(pv[8])}">=</span>`) : '';
     return `<tr data-key="${esc(placeKey(r))}"><td>${esc(r[0])}<br><small class="addr">${addr}</small></td>
-      <td><span class="dot d-${rowBand(r)}"></span>${scoreLabel(r)}</td>
+      <td><span class="chip sm ${rowBand(r)}">${scoreLabel(r)}</span>${trend}</td>
       <td class="m">${esc(cityLabel(r[4]))}</td><td class="m">${esc(catOf(r))}${r[7] ? `<br><small class="addr">${esc(r[7])}</small>` : ''}</td><td class="m">${fmtDate(r[8])}</td></tr>`;
   }).join('') || '<tr><td colspan="5" class="m">No matches.</td></tr>';
   const shown = Math.min(t.length, TABLE_LIMIT);
+  el('tableTitle').textContent = state.place ? `History for ${PLACES[state.place].name}` : state.sel && SELS[state.sel] ? SELS[state.sel].label : 'All inspections in this view';
+  TABLE_ROWS = t;
   el('tableCount').textContent =
     (t.length > TABLE_LIMIT ? `Showing ${shown} of ${t.length.toLocaleString()} records, search to narrow it down` : `${t.length.toLocaleString()} record${t.length===1?'':'s'}`) + ' · click a row for that place\'s history';
   document.querySelectorAll('th').forEach(th => th.querySelector('.arrow').textContent = +th.dataset.k===k ? (d===1?'▲':'▼') : '');
@@ -638,7 +711,7 @@ async function geocodeMissing(rows){
 function drawMarkers(fit){
   if (!map) return;
   markerLayer.clearLayers(); markerIndex = {};
-  const rows = filtered(false);
+  const rows = viewRows();
   const groups = {};
   rows.forEach(r => { const c = geoCache[addrKey(r)]; if (c) (groups[addrKey(r)] ||= { c, rows: [] }).rows.push(r); });
   const css = getComputedStyle(document.documentElement);
@@ -691,14 +764,64 @@ function locate(key, scroll){
 }
 
 // ---------------------------------------------------------------- render
+function renderChips(){
+  const chips = [];
+  const pl = Object.fromEntries(PERIODS);
+  if (state.period !== '90') chips.push([pl[state.period], () => state.period = '90']);
+  if (state.city !== 'All') chips.push([state.city === 'Other' ? 'Other cities' : state.city, () => state.city = 'All']);
+  if (state.type !== 'All') chips.push([state.type, () => state.type = 'All']);
+  if (state.sel && SELS[state.sel]) chips.push([SELS[state.sel].label, () => state.sel = null]);
+  const box = el('chips');
+  if (!chips.length) { box.innerHTML = ''; return; }
+  box.innerHTML = '<span>Filtering by</span>' + chips.map((c, i) => `<span class="chip-f">${esc(c[0])}<button type="button" data-i="${i}" aria-label="Remove ${esc(c[0])} filter">×</button></span>`).join('') + (chips.length > 1 ? '<button type="button" class="clear" id="clearAll">Clear all</button>' : '');
+  box.querySelectorAll('.chip-f button').forEach(b => b.onclick = () => { chips[+b.dataset.i][1](); render(true); });
+  const ca = el('clearAll'); if (ca) ca.onclick = () => { chips.forEach(c => c[1]()); render(true); };
+}
+
 function render(refit){
   buildFilters();
-  const rows = filtered(false);
+  const rows = filtered(false), view = viewRows();
   renderSubtitle();
-  el('scope').textContent = `Showing ${rows.length.toLocaleString()} of ${periodRows().length.toLocaleString()} inspections in this period`;
-  renderKPIs(rows); renderStory(rows); renderTable(rows); drawMarkers(refit);
-  geocodeMissing(rows);
+  el('scope').textContent = state.sel
+    ? `Map and table show ${view.length.toLocaleString()} of ${rows.length.toLocaleString()} inspections in this view`
+    : `Showing ${rows.length.toLocaleString()} of ${periodRows().length.toLocaleString()} inspections in this period`;
+  renderChips();
+  renderKPIs(rows); renderStory(rows); renderTable(view); drawMarkers(refit);
+  geocodeMissing(view);
+  writeHash();
   postHeight();
+}
+
+// Shareable links: the filters live in the URL hash, so a reporter can send "restaurants
+// below 80 in Mt. Juliet this year" as one link.
+function writeHash(){
+  const q = new URLSearchParams();
+  if (state.period !== '90') q.set('period', state.period);
+  if (state.city !== 'All') q.set('city', state.city);
+  if (state.type !== 'All') q.set('type', state.type);
+  if (state.sel) q.set('show', state.sel);
+  if (state.place) q.set('place', state.place);
+  const h = q.toString();
+  if (('#' + h) !== location.hash && (h || location.hash)) history.replaceState(null, '', h ? '#' + h : location.pathname + location.search);
+}
+function readHash(){
+  const q = new URLSearchParams(location.hash.slice(1));
+  if (PERIODS.some(p => p[0] === q.get('period'))) state.period = q.get('period');
+  if (q.get('city') && (MAIN_CITIES.includes(q.get('city')) || q.get('city') === 'Other')) state.city = q.get('city');
+  if (CATEGORIES.includes(q.get('type'))) state.type = q.get('type');
+  if (SELS[q.get('show')]) state.sel = q.get('show');
+  return PLACES[q.get('place')] ? q.get('place') : null;
+}
+
+function downloadCSV(){
+  const head = ['name','score','result','street','city','zip','facility_type','inspection_type','date'];
+  const cell = v => { v = v == null ? '' : String(v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+  const lines = [head.join(',')].concat(TABLE_ROWS.map(r => [r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], r[8]].map(cell).join(',')));
+  const blob = new Blob([lines.join('\r\n')], { type:'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `wilson-county-inspections-${(el('tableTitle').textContent || 'view').toLowerCase().replace(/[^a-z0-9]+/g, '-')}.csv`;
+  a.click(); URL.revokeObjectURL(a.href);
 }
 
 function renderAbout(){
@@ -717,7 +840,7 @@ const searchEl = el('search');
 searchEl.addEventListener('input', e => {
   state.q = e.target.value; hl = -1;
   if (state.place) { state.place = null; el('detail').hidden = true; }
-  renderSuggest(); renderTable(filtered(false));
+  renderSuggest(); renderTable(viewRows());
 });
 searchEl.addEventListener('keydown', e => {
   const n = Math.min(matches.length, 8);
@@ -728,10 +851,12 @@ searchEl.addEventListener('keydown', e => {
 });
 searchEl.addEventListener('focus', () => { if (!state.place) renderSuggest(); });
 document.addEventListener('click', e => { if (!e.target.closest('.search-wrap')) el('suggest').classList.remove('on'); });
-el('dClose').onclick = () => { clearPlace(); searchEl.value = ''; state.q = ''; renderTable(filtered(false)); };
+el('dClose').onclick = () => { clearPlace(); searchEl.value = ''; state.q = ''; render(false); };
+document.querySelectorAll('.kpi').forEach(k => k.onclick = () => setSel(k.dataset.sel));
+el('csvBtn').onclick = downloadCSV;
 el('tbody').addEventListener('click', e => { if (e.target.closest('a')) return; const tr = e.target.closest('tr[data-key]'); if (tr) choosePlace(tr.dataset.key); });
 document.querySelectorAll('th').forEach(th => th.onclick = () => {
-  const k = +th.dataset.k; state.sortDir = state.sortK===k ? -state.sortDir : (k===8 ? -1 : 1); state.sortK = k; renderTable(filtered(false));
+  const k = +th.dataset.k; state.sortDir = state.sortK===k ? -state.sortDir : (k===8 ? -1 : 1); state.sortK = k; renderTable(viewRows());
 });
 
 async function load(){
@@ -754,11 +879,14 @@ async function load(){
   const counts = {}; DATA.forEach(r => { if (r[4]) counts[r[4]] = (counts[r[4]]||0)+1; });
   MAIN_CITIES = Object.keys(counts).filter(c => counts[c] >= 25).sort((a,b)=>counts[b]-counts[a]);
   buildPlaces();
+  const placeFromHash = readHash();
+  if (META.generated) el('updated').innerHTML = `Data through <b>${fmtLong(LATEST)}</b> · refreshed ${fmtLong(META.generated.slice(0,10))} · updates weekly`;
   el('hint').innerHTML = `${PLACE_LIST.length.toLocaleString()} places and ${DATA.length.toLocaleString()} inspections since ${fmtLong(META.date_min || LATEST)}. Try <button type="button" data-q="Shoney">Shoney's</button>, <button type="button" data-q="Providence">Providence</button>, or <button type="button" data-q="Lebanon Rd">Lebanon Rd</button>.`;
   el('hint').querySelectorAll('button').forEach(b => b.onclick = () => { searchEl.value = b.dataset.q; searchEl.dispatchEvent(new Event('input')); searchEl.focus(); });
   document.body.classList.remove('loading');
   renderAbout();
   render(true);
+  if (placeFromHash) choosePlace(placeFromHash);
 }
 load();
 </script>
