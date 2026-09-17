@@ -63,7 +63,7 @@ window.addEventListener('message', function (e) {
 
 ## Credits
 
-- Inspection data: Tennessee Department of Health, via [Wilson County Source](https://wilsoncountysource.com)
+- Inspection data: [Tennessee Department of Health](https://inspections.myhealthdepartment.com/tennessee), via the weekly [Health Scores posts on Wilson County Source](https://wilsoncountysource.com/tag/health-scores/)
 - Geocoding: US Census Bureau Geocoder and OpenStreetMap Nominatim
 - Map tiles: OpenStreetMap contributors
 - Built by Royal Blue Analytics. [Book a discovery call](https://calendly.com/sekoutyler/discovery)

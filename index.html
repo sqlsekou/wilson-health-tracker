@@ -154,6 +154,11 @@
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .chips .clear{color:#8FA4F0} }
   .updated{font-size:10px;color:rgba(255,255,255,.7);margin-top:6px}
   .updated b{color:#fff;font-weight:600}
+  .updated a{color:#fff;text-decoration:underline;text-underline-offset:2px}
+  details.credit a{color:var(--brand);font-weight:600;text-decoration:none}
+  details.credit a:hover{text-decoration:underline}
+  :root[data-theme="dark"] details.credit a{color:#8FA4F0}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) details.credit a{color:#8FA4F0} }
   .tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--bad);background:var(--bad-soft);border-radius:4px;padding:2px 5px;margin-left:6px;vertical-align:1px}
   .trend{font-size:10px;font-weight:700;margin-left:6px}
   .trend.up{color:var(--good)} .trend.down{color:var(--bad)} .trend.flat{color:var(--muted);font-weight:500}
@@ -881,7 +886,7 @@ function downloadCSV(){
 
 function renderAbout(){
   const range = META.date_min && META.date_max ? ` The dataset covers ${META.count.toLocaleString()} inspections published between ${fmtLong(META.date_min)} and ${fmtLong(META.date_max)}${META.generated ? `, last refreshed ${fmtLong(META.generated.slice(0,10))}` : ''}.` : '';
-  el('aboutText').textContent = `Independent demo by Royal Blue Analytics, not affiliated with Wilson County Source. Scores come from Tennessee Department of Health inspections as published in the weekly Health Scores posts on Wilson County Source and are out of 100. Child care facilities receive an approval result instead of a number. A score of 0 appears only on failed follow-up visits (mostly pools) and is treated as a failed reinspection rather than a score, so it is left out of averages and pass rates. Each row is one inspection, so a place with a routine visit and a follow-up in the same period counts twice; the Inspections card shows how many were return visits. Pass rate means the share of scored inspections at 90 or better. A place is tagged as a repeat low scorer when it missed 90 on two or more visits in the last 12 months.${range} Map data © OpenStreetMap contributors.`;
+  el('aboutText').innerHTML = `Independent demo by Royal Blue Analytics, not affiliated with Wilson County Source. Scores come from <a href="https://inspections.myhealthdepartment.com/tennessee" target="_blank" rel="noopener">Tennessee Department of Health</a> inspections as published in the weekly <a href="https://wilsoncountysource.com/tag/health-scores/" target="_blank" rel="noopener">Health Scores posts on Wilson County Source</a> and are out of 100. Child care facilities receive an approval result instead of a number. A score of 0 appears only on failed follow-up visits (mostly pools) and is treated as a failed reinspection rather than a score, so it is left out of averages and pass rates. Each row is one inspection, so a place with a routine visit and a follow-up in the same period counts twice; the Inspections card shows how many were return visits. Pass rate means the share of scored inspections at 90 or better. A place is tagged as a repeat low scorer when it missed 90 on two or more visits in the last 12 months.${range} Map data © OpenStreetMap contributors.`;
 }
 
 function postHeight(){
@@ -946,7 +951,7 @@ async function load(){
   MAIN_CITIES = Object.keys(counts).filter(c => counts[c] >= 25).sort((a,b)=>counts[b]-counts[a]);
   buildPlaces();
   const placeFromHash = readHash();
-  if (META.generated) el('updated').innerHTML = `Data through <b>${fmtLong(LATEST)}</b> · refreshed ${fmtLong(META.generated.slice(0,10))} · updates weekly`;
+  if (META.generated) el('updated').innerHTML = `Data through <b>${fmtLong(LATEST)}</b> · refreshed ${fmtLong(META.generated.slice(0,10))} · updates weekly · source: <a href="https://wilsoncountysource.com/tag/health-scores/" target="_blank" rel="noopener">Wilson County Source</a>`;
   el('hint').innerHTML = `${PLACE_LIST.length.toLocaleString()} places and ${DATA.length.toLocaleString()} inspections since ${fmtLong(META.date_min || LATEST)}. Try <button type="button" data-q="Shoney">Shoney's</button>, <button type="button" data-q="Providence">Providence</button>, or <button type="button" data-q="Lebanon Rd">Lebanon Rd</button>.`;
   el('hint').querySelectorAll('button').forEach(b => b.onclick = () => { searchEl.value = b.dataset.q; searchEl.dispatchEvent(new Event('input')); searchEl.focus(); });
   document.body.classList.remove('loading');
