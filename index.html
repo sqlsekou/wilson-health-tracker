@@ -6,6 +6,8 @@
 <title>Wilson County Health Inspection Tracker | Royal Blue Analytics</title>
 <meta name="description" content="Look up any restaurant, pool, hotel, or child care facility in Wilson County, Tennessee and see its health inspection history. Independent demo by Royal Blue Analytics.">
 <meta name="theme-color" content="#253B8E">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta property="og:title" content="Wilson County Health Inspection Tracker">
 <meta property="og:description" content="Look up any restaurant, pool, hotel, or child care facility in Wilson County, TN and see its full health inspection history.">
 <meta property="og:type" content="website">
@@ -31,6 +33,8 @@
       --bar:#8FA4F0; --bar-muted:rgba(143,164,240,.25);
     }
   }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .foot img{filter:brightness(0) invert(1)} }
+  :root[data-theme="dark"] .foot img{filter:brightness(0) invert(1)}
   :root[data-theme="dark"]{
     --brand-soft:rgba(143,164,240,.14); --bg:#121418; --card:#1C1F26; --border:#2C3038; --shadow:0 2px 10px rgba(0,0,0,.35);
     --text:#ECEEF2; --muted:#9AA1AD; --track:#262A32; --good:#4CBF84; --warn:#E0A94A; --bad:#FF6B6B;
@@ -53,11 +57,13 @@
   .hero{background:var(--brand);color:#fff;border-radius:var(--radius);padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
   .hero h1{font-size:20px;font-weight:700;line-height:1.2}
   .hero p{font-size:12px;color:rgba(255,255,255,.78);margin-top:3px}
-  .rba{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:50px;padding:5px 14px 5px 6px}
-  .rba:hover{background:rgba(255,255,255,.18)}
-  .rba img{height:30px;width:auto;display:block}
+  .rba{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;padding:4px 0}
+  .rba img{height:44px;width:auto;display:block}
   .rba .mark{display:none}
+  .rba:not(.nologo) strong{display:none}
+  .rba.nologo{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:50px;padding:5px 14px 5px 6px;gap:8px}
   .rba.nologo img{display:none} .rba.nologo .mark{display:flex}
+  .rba .txt{text-align:right}
   .mark{width:28px;height:28px;border-radius:50%;background:#fff;color:var(--brand-dark);font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
   .rba small{display:block;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.65)}
   .rba strong{font-size:12px}
@@ -80,6 +86,13 @@
   .hint button{border:none;background:none;color:var(--brand);font-weight:600;cursor:pointer;font-size:11px;padding:0}
   :root[data-theme="dark"] .hint button{color:#8FA4F0}
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .hint button{color:#8FA4F0} }
+
+  .sticky{position:fixed;top:0;left:0;right:0;z-index:1200;background:var(--card);border-bottom:1px solid var(--border);box-shadow:0 2px 10px rgba(16,24,40,.10);padding:8px 16px;transform:translateY(-110%);transition:transform .18s}
+  .sticky.on{transform:none}
+  .sticky .in{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:10px}
+  .sticky img{height:22px;width:auto}
+  .sticky input{flex:1;border:1px solid var(--border);background:var(--bg);color:var(--text);border-radius:8px;padding:8px 12px;font-size:13px;outline:none}
+  .sticky input:focus{border-color:var(--brand)}
 
   /* Score chips */
   .chip{display:inline-flex;align-items:center;justify-content:center;min-width:44px;padding:4px 9px;border-radius:8px;font-weight:800;font-size:14px;line-height:1}
@@ -140,6 +153,7 @@
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .chips .clear{color:#8FA4F0} }
   .updated{font-size:10px;color:rgba(255,255,255,.7);margin-top:6px}
   .updated b{color:#fff;font-weight:600}
+  .tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--bad);background:var(--bad-soft);border-radius:4px;padding:2px 5px;margin-left:6px;vertical-align:1px}
   .trend{font-size:10px;font-weight:700;margin-left:6px}
   .trend.up{color:var(--good)} .trend.down{color:var(--bad)} .trend.flat{color:var(--muted);font-weight:500}
   td .chip.sm{min-width:40px}
@@ -170,7 +184,8 @@
   body.loading .kpi .v{width:60px;height:31px} body.loading .kpi .s{width:120px;height:13px}
 
   /* Story row */
-  .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+  .grid3{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+  @media (max-width:1100px){ .grid3{grid-template-columns:repeat(2,minmax(0,1fr))} }
   .box .sub{margin:2px 0 12px}
   .cols{display:flex;align-items:flex-end;gap:8px;height:150px;border-bottom:1px solid var(--border)}
   .col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
@@ -190,7 +205,8 @@
   .hf.warn{background:var(--warn)} .hf.bad{background:var(--bad)} .hf.good{background:var(--good)} .hf.muted{background:var(--bar-muted)}
   .hv{font-size:12px;font-weight:700;text-align:right}
   .empty{font-size:12px;color:var(--muted);padding:8px 0}
-  .note{font-size:11px;color:var(--muted);margin-top:10px;padding-top:8px;border-top:1px dashed var(--border)}
+  .note{font-size:11px;color:var(--muted);margin-top:10px;padding-top:8px;border-top:1px dashed var(--border);line-height:1.6}
+  .note b{color:var(--text)}
   .note button{border:none;background:none;color:var(--brand);font-weight:600;cursor:pointer;font-size:11px;padding:0}
   :root[data-theme="dark"] .note button{color:#8FA4F0}
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .note button{color:#8FA4F0} }
@@ -227,7 +243,7 @@
   .foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;box-shadow:var(--shadow)}
   .foot .who{display:flex;align-items:center;gap:10px}
   .foot .mark{background:var(--brand);color:#fff;width:32px;height:32px}
-  .foot img{height:32px;width:auto;display:block}
+  .foot img{height:36px;width:auto;display:block}
   .foot .who.nologo img{display:none} .foot .who .mark{display:none} .foot .who.nologo .mark{display:flex}
   .foot .t1{font-size:13px;font-weight:700}
   .foot .t2{font-size:11px;color:var(--muted)}
@@ -253,6 +269,9 @@
 </style>
 </head>
 <body class="loading">
+<div class="sticky" id="sticky" aria-hidden="true">
+  <div class="in"><img src="assets/favicon.png" alt=""><input id="stickyIn" type="search" placeholder="Look up a restaurant, pool, hotel, or address…" aria-label="Look up a place"></div>
+</div>
 <div class="app">
 
   <header class="hero">
@@ -262,9 +281,9 @@
       <p class="updated" id="updated"></p>
     </div>
     <a class="rba" id="headerBrand" href="https://royalblueanalytics.com" target="_blank" rel="noopener">
-      <img src="assets/rba-logo-light.png" alt="" onerror="this.parentNode.classList.add('nologo')">
+      <span class="txt"><small>Created by</small><strong>Royal Blue Analytics</strong></span>
+      <img src="assets/rba-logo-light.png" alt="Royal Blue Analytics" width="720" height="145" onerror="this.parentNode.classList.add('nologo')">
       <span class="mark">RBA</span>
-      <span><small>Created by</small><strong>Royal Blue Analytics</strong></span>
     </a>
   </header>
 
@@ -315,9 +334,9 @@
 
   <section class="kpis" aria-label="Summary, click a card to filter the map and table">
     <button class="kpi" data-sel="all"><span class="l">Inspections</span><span class="v" id="kCount">0</span><span class="s" id="kCountSub"></span><span class="hint-l">Show everything in this view</span></button>
-    <button class="kpi good" data-sel="pass"><span class="l">Scored 90 or better</span><span class="v" id="kPass">0</span><span class="s" id="kPassSub"></span><span class="hint-l">Click to list them</span></button>
     <button class="kpi warn" data-sel="low"><span class="l">Scored below 80</span><span class="v" id="kLow">0</span><span class="s" id="kLowSub"></span><span class="hint-l">Click to list them</span></button>
     <button class="kpi bad" data-sel="zero"><span class="l">Failed follow-ups</span><span class="v" id="kZero">0</span><span class="s" id="kZeroSub"></span><span class="hint-l">Click to list them</span></button>
+    <button class="kpi good" data-sel="pass"><span class="l">Scored 90 or better</span><span class="v" id="kPass">0</span><span class="s" id="kPassSub"></span><span class="hint-l">Click to list them</span></button>
   </section>
 
   <section class="panel pad">
@@ -334,6 +353,10 @@
       <div class="box">
         <h3>How cities compare</h3><div class="sub">Share of scored inspections at 90 or better. Click a city to focus on it.</div>
         <div class="hbars" id="cityChart"></div>
+      </div>
+      <div class="box">
+        <h3>How categories compare</h3><div class="sub">Same pass rate by type of place. Click one to focus on it.</div>
+        <div class="hbars" id="catChart"></div>
       </div>
     </div>
   </section>
@@ -374,7 +397,7 @@
 
   <footer class="foot">
     <div class="who" id="footerBrand">
-      <img src="assets/rba-logo.png" alt="" onerror="this.parentNode.classList.add('nologo')">
+      <img src="assets/rba-logo.png" alt="Royal Blue Analytics" width="720" height="145" onerror="this.parentNode.classList.add('nologo')">
       <span class="mark">RBA</span>
       <div>
         <div class="t1">Created by Royal Blue Analytics</div>
@@ -397,7 +420,7 @@
 <script>
 // Data is loaded from data/inspections.json, built by scripts/build.py.
 // row: [name, score|null, resultText, street, city, zip, facilityType, inspectionType, date, lat|null, lon|null]
-let DATA = [], META = {}, MAIN_CITIES = [], LATEST = null, PLACES = {}, PLACE_LIST = [], PREV = new Map(), TABLE_ROWS = [];
+let DATA = [], META = {}, MAIN_CITIES = [], LATEST = null, YEAR_AGO = '', PLACES = {}, PLACE_LIST = [], PREV = new Map(), TABLE_ROWS = [];
 const state = { period:'90', city:'All', type:'All', q:'', sortK:8, sortDir:-1, place:null, sel:null };
 // sel: a cross-filter picked from a KPI card or a chart bar. It narrows the map and table,
 // while the KPIs and charts keep showing the full view so the selection stays in context.
@@ -405,6 +428,7 @@ const SELS = {
   pass: { label:'Scored 90 or better', test: r => scored(r) && r[1] >= 90 },
   low:  { label:'Scored below 80',     test: r => scored(r) && r[1] < 80 },
   zero: { label:'Failed follow-ups',   test: r => isZero(r) },
+  repeat: { label:'Repeat low scorers', test: r => PLACES[placeKey(r)]?.repeat },
 };
 const BANDS = [['<70',1,69,'bad','under 70'],['70s',70,79,'warn','70 to 79'],['80s',80,89,'warn','80 to 89'],['90-94',90,94,'','90 to 94'],['95-99',95,99,'','95 to 99'],['100',100,100,'','100']];
 BANDS.forEach(([l,a,b,c,words]) => SELS['band:'+l] = { label:`Scored ${words}`, test: r => scored(r) && r[1] >= a && r[1] <= b });
@@ -479,6 +503,10 @@ function buildPlaces(){
     // previous scored visit for each row, so the table can show the change since last time
     let prev = null;
     [...p.rows].reverse().forEach(r => { if (prev) PREV.set(r, prev); if (scored(r)) prev = r; });
+    // Repeat low scorer: missed the 90 pass mark on two or more visits in the last 12 months.
+    // 90 is the same line the pass-rate KPI and the Places to watch list use.
+    p.lowCount = p.rows.filter(r => r[8] >= YEAR_AGO && scored(r) && r[1] < 90).length;
+    p.repeat = p.lowCount >= 2;
     p.name = p.latest[0].trim();  // display the most recent spelling
     p.search = `${p.name} ${normName(p.name)} ${p.street} ${p.city}`.toLowerCase();
   });
@@ -528,7 +556,7 @@ function clearPlace(){
 function renderDetail(p){
   const d = el('detail');
   d.hidden = false;
-  el('dName').textContent = p.name;
+  el('dName').innerHTML = esc(p.name) + (p.repeat ? `<span class="tag" title="Scored below 90 on ${p.lowCount} visits in the last 12 months">Repeat low scorer</span>` : '');
   el('dMeta').textContent = `${p.street ? p.street + ', ' : ''}${cityLabel(p.city)}${p.zip ? ' ' + p.zip : ''} · ${catOf(p.latest)}${p.fac && CATEGORY[p.fac] !== p.fac ? ' (' + p.fac + ')' : ''}`;
   const L = p.latest;
   el('dChip').className = 'chip ' + rowBand(L);
@@ -622,11 +650,15 @@ function renderStory(rows){
   hbars('watchChart', watch.map(r => ({ name:r[0], sub:`${cityLabel(r[4])} · ${catOf(r)} · ${fmtDate(r[8])}${r[7]?' '+r[7]:''}`, v:r[1], cls:band(r[1]), key:placeKey(r) })), i => choosePlace(i.key));
   const zeros = rows.filter(isZero);
   const zp = new Set(zeros.map(placeKey)).size;
-  el('zeroNote').innerHTML = zeros.length
-    ? `Not shown above: ${zeros.length} failed follow-up${zeros.length>1?'s':''} at ${zp} place${zp>1?'s':''} (mostly pools) scored 0. <button type="button" id="zeroBtn">List them</button>`
-    : 'No failed follow-ups in this view.';
-  const zb = el('zeroBtn');
-  if (zb) zb.onclick = () => { setSel('zero'); document.querySelector('.table-wrap').scrollIntoView({ behavior:'smooth', block:'nearest' }); };
+  const reps = new Set(rows.filter(r => PLACES[placeKey(r)]?.repeat).map(placeKey)).size;
+  el('zeroNote').innerHTML =
+    (reps ? `<b>${reps} repeat low scorer${reps>1?'s':''}</b> in this view missed the 90 mark on two or more visits in the last 12 months. <button type="button" id="repBtn">List them</button><br>` : '') +
+    (zeros.length
+      ? `Not shown above: ${zeros.length} failed follow-up${zeros.length>1?'s':''} at ${zp} place${zp>1?'s':''} (mostly pools) scored 0. <button type="button" id="zeroBtn">List them</button>`
+      : 'No failed follow-ups in this view.');
+  const scrollTable = () => document.querySelector('.table-wrap').scrollIntoView({ behavior:'smooth', block:'nearest' });
+  const zb = el('zeroBtn'); if (zb) zb.onclick = () => { setSel('zero'); scrollTable(); };
+  const rb = el('repBtn'); if (rb) rb.onclick = () => { setSel('repeat'); scrollTable(); };
 
   // Cities: pass rate with the base shown, so a high rate on 4 inspections reads as what it is
   const cr = filtered(true).filter(scored);
@@ -638,6 +670,14 @@ function renderStory(rows){
     const p = xs.filter(x => x >= 90).length / xs.length * 100;
     return { name:c === 'Other' ? 'Other cities' : c, sub:`${xs.length.toLocaleString()} scored inspection${xs.length>1?'s':''}`, v:p, label:Math.round(p)+'%', cls:(state.city==='All'||state.city===c)?'good':'muted', on:state.city===c, city:c, title:`${c}: ${Math.round(p)}% of ${xs.length} scored 90 or better. Click to focus on ${c}.` };
   }).sort((a,b)=>b.v-a.v), i => { state.city = state.city === i.city ? 'All' : i.city; render(true); });
+
+  // Categories: the same pass rate by type of place, so pools and restaurants can be compared on equal terms
+  const byCat = {};
+  periodRows().filter(r => cityMatch(r) && scored(r)).forEach(r => { (byCat[catOf(r)] ||= []).push(r[1]); });
+  hbars('catChart', Object.entries(byCat).filter(([c, xs]) => xs.length >= 5 || state.type === c).map(([c, xs]) => {
+    const p = xs.filter(x => x >= 90).length / xs.length * 100;
+    return { name:c, sub:`${xs.length.toLocaleString()} scored inspection${xs.length>1?'s':''}`, v:p, label:Math.round(p)+'%', cls:(state.type==='All'||state.type===c)?'good':'muted', on:state.type===c, cat:c, title:`${c}: ${Math.round(p)}% of ${xs.length} scored 90 or better. Click to focus on ${c}.` };
+  }).sort((a,b)=>b.v-a.v), i => { state.type = state.type === i.cat ? 'All' : i.cat; render(true); });
 }
 
 function renderTable(rows){
@@ -650,7 +690,8 @@ function renderTable(rows){
     const addr = r[3] ? `<a href="${gmaps(r)}" target="_blank" rel="noopener">${esc(r[3])}</a>` : 'Address not listed';
     const pv = PREV.get(r);
     const trend = scored(r) && pv ? (r[1] > pv[1] ? `<span class="trend up" title="Up from ${pv[1]} on ${fmtDate(pv[8])}">▲${r[1]-pv[1]}</span>` : r[1] < pv[1] ? `<span class="trend down" title="Down from ${pv[1]} on ${fmtDate(pv[8])}">▼${pv[1]-r[1]}</span>` : `<span class="trend flat" title="Same as ${fmtDate(pv[8])}">=</span>`) : '';
-    return `<tr data-key="${esc(placeKey(r))}"><td>${esc(r[0])}<br><small class="addr">${addr}</small></td>
+    const rp = PLACES[placeKey(r)]?.repeat ? `<span class="tag" title="Scored below 90 on ${PLACES[placeKey(r)].lowCount} visits in the last 12 months">Repeat</span>` : '';
+    return `<tr data-key="${esc(placeKey(r))}"><td>${esc(r[0])}${rp}<br><small class="addr">${addr}</small></td>
       <td><span class="chip sm ${rowBand(r)}">${scoreLabel(r)}</span>${trend}</td>
       <td class="m">${esc(cityLabel(r[4]))}</td><td class="m">${esc(catOf(r))}${r[7] ? `<br><small class="addr">${esc(r[7])}</small>` : ''}</td><td class="m">${fmtDate(r[8])}</td></tr>`;
   }).join('') || '<tr><td colspan="5" class="m">No matches.</td></tr>';
@@ -826,7 +867,7 @@ function downloadCSV(){
 
 function renderAbout(){
   const range = META.date_min && META.date_max ? ` The dataset covers ${META.count.toLocaleString()} inspections published between ${fmtLong(META.date_min)} and ${fmtLong(META.date_max)}${META.generated ? `, last refreshed ${fmtLong(META.generated.slice(0,10))}` : ''}.` : '';
-  el('aboutText').textContent = `Independent demo by Royal Blue Analytics, not affiliated with Wilson County Source. Scores come from Tennessee Department of Health inspections as published in the weekly Health Scores posts on Wilson County Source and are out of 100. Child care facilities receive an approval result instead of a number. A score of 0 appears only on failed follow-up visits (mostly pools) and is treated as a failed reinspection rather than a score, so it is left out of averages and pass rates. Pass rate means the share of scored inspections at 90 or better.${range} Map data © OpenStreetMap contributors.`;
+  el('aboutText').textContent = `Independent demo by Royal Blue Analytics, not affiliated with Wilson County Source. Scores come from Tennessee Department of Health inspections as published in the weekly Health Scores posts on Wilson County Source and are out of 100. Child care facilities receive an approval result instead of a number. A score of 0 appears only on failed follow-up visits (mostly pools) and is treated as a failed reinspection rather than a score, so it is left out of averages and pass rates. Pass rate means the share of scored inspections at 90 or better. A place is tagged as a repeat low scorer when it missed 90 on two or more visits in the last 12 months.${range} Map data © OpenStreetMap contributors.`;
 }
 
 function postHeight(){
@@ -850,6 +891,16 @@ searchEl.addEventListener('keydown', e => {
   else if (e.key === 'Escape') { el('suggest').classList.remove('on'); }
 });
 searchEl.addEventListener('focus', () => { if (!state.place) renderSuggest(); });
+// Sticky bar: appears when the main search is scrolled out of the top of the page; typing in it
+// jumps back to the real search so suggestions show in one place
+if ('IntersectionObserver' in window) {
+  const sp = document.querySelector('.search-panel'), st = el('sticky');
+  new IntersectionObserver(([e]) => {
+    const on = !e.isIntersecting && e.boundingClientRect.top < 0 && !document.getElementById('detail').matches(':hover');
+    st.classList.toggle('on', on); st.setAttribute('aria-hidden', !on);
+  }, { threshold: 0 }).observe(sp);
+  el('stickyIn').addEventListener('focus', () => { sp.scrollIntoView({ behavior:'smooth', block:'start' }); setTimeout(() => searchEl.focus(), 350); });
+}
 document.addEventListener('click', e => { if (!e.target.closest('.search-wrap')) el('suggest').classList.remove('on'); });
 el('dClose').onclick = () => { clearPlace(); searchEl.value = ''; state.q = ''; render(false); };
 document.querySelectorAll('.kpi').forEach(k => k.onclick = () => setSel(k.dataset.sel));
@@ -876,6 +927,7 @@ async function load(){
   }
   DATA.forEach(r => { if (r[9] != null && r[10] != null) geoCache[addrKey(r)] = [r[9], r[10], 'address']; });
   LATEST = DATA.reduce((m, r) => r[8] > m ? r[8] : m, '');
+  { const d = new Date(LATEST + 'T12:00:00'); d.setFullYear(d.getFullYear() - 1); YEAR_AGO = d.toISOString().slice(0,10); }
   const counts = {}; DATA.forEach(r => { if (r[4]) counts[r[4]] = (counts[r[4]]||0)+1; });
   MAIN_CITIES = Object.keys(counts).filter(c => counts[c] >= 25).sort((a,b)=>counts[b]-counts[a]);
   buildPlaces();

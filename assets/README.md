@@ -1,9 +1,9 @@
 # Brand assets
 
-Drop the Royal Blue Analytics logo files here. The page looks for these exact names
-and falls back to the "RBA" badge if a file is missing:
+- `Blue_Logo@2x.png`, `White-Logo@2x.png`: the original Royal Blue Analytics logo files (source, not loaded by the page).
+- `rba-logo.png`: trimmed 720px blue wordmark, used in the footer.
+- `rba-logo-light.png`: trimmed 720px white wordmark, used on the blue header.
+- `favicon.png`, `apple-touch-icon.png`, `icon-512.png`: the "O" chart mark cropped from the blue logo.
+- `og-image.png`: 1200 x 630 link preview for LinkedIn, Slack, and similar.
 
-- `rba-logo-light.png` (or .svg): white or light version, shown on the royal blue header. About 400px wide, transparent background.
-- `rba-logo.png` (or .svg): full color version, shown in the footer on a white card. Same size.
-
-If your logo is an SVG, rename the references in index.html from `.png` to `.svg`.
+Regenerate the web versions from the originals with Pillow if the logo changes.
