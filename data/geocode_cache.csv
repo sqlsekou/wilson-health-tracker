@@ -56,6 +56,7 @@ key,street,city,zip,lat,lon,source,precision
 1021 west main street|lebanon|37087,1021 West Main Street,Lebanon,37087,36.211529555013,-86.315341386261,census,address (exact)
 1023 main street|lebanon|37087,1023 Main Street,Lebanon,37087,36.2115650663,-86.315477325224,census,address (non_exact)
 1023 w main st|lebanon|37087,1023 W. Main St.,Lebanon,37087,36.2115650663,-86.315477325224,census,address (exact)
+1025 w main st c|lebanon|37087,1025 W Main St C,Lebanon,37087,36.21168054452,-86.315926147482,census,address (non_exact)
 103 belinda pkwy|mt. juliet|37122,103 Belinda Pkwy,Mt. Juliet,37122,36.1707029,-86.4961371,nominatim,address
 103 cedarwood dr|lebanon|37087,103 Cedarwood Dr.,Lebanon,37087,36.185956366325,-86.295806758075,census,address (exact)
 103 w division st|mt. juliet|37122,103 W Division St.,Mt. Juliet,37122,36.203628652005,-86.527793696341,census,address (exact)
@@ -166,6 +167,7 @@ key,street,city,zip,lat,lon,source,precision
 1150 sparta pike.|lebanon|37087,1150 Sparta Pike.,Lebanon,37087,36.193474137933,-86.273694127057,census,address (exact)
 1150 sparta pike|lebanon|37087,1150 Sparta Pike.,Lebanon,37087,36.193474137933,-86.273694127057,census,address (exact)
 1150 vultee blvd m101|nashville|37217,1150 Vultee Blvd. M101,Nashville,37217,36.123926463677,-86.705222056766,census,address (non_exact)
+1160 horn springs rd|lebanon|37087,1160 Horn Springs Rd,Lebanon,37087,36.24582,-86.3616633,nominatim,address
 11674 lebanon rd|mt. juliet|37122,11674 Lebanon Rd,Mt. Juliet,37122,36.230979967322,-86.521710785804,census,address (exact)
 118 odette st|madison|37115,118 Odette St,Madison,37115,36.280528506894,-86.70766010235,census,address (exact)
 11804 lebanon rd|mt. juliet|37122,11804 Lebanon Rd,Mt. Juliet,37122,36.231005846854,-86.52331163966,census,address (exact)
@@ -197,6 +199,7 @@ key,street,city,zip,lat,lon,source,precision
 123 country club rd|niota|37826,123 Country Club Rd,Niota,37826,35.518088761745,-84.557507718831,census,address (exact)
 1235 lebanon rd|mt. juliet|37122,1235 Lebanon Rd.,Mt. Juliet,37122,36.1952641,-86.5711294,nominatim,address
 1235 n mt juliet rd|mt. juliet|37122,1235 N. Mt. Juliet Rd,Mt. Juliet,37122,36.188283234942,-86.511469405895,census,address (exact)
+1241 n mt juliet rd|mt. juliet|37122,1241 N Mt Juliet Rd,Mt. Juliet,37122,36.188414620044,-86.511557883311,census,address (exact)
 1260 creighton ln|lebanon|37087,1260 Creighton Ln,Lebanon,37087,36.314405241551,-86.462180064021,census,address (exact)
 12635 lebanon rd|mt. juliet|37122,12635 Lebanon Rd.,Mt. Juliet,37122,36.227025935381,-86.538485559252,census,address (exact)
 1265 n mt juliet rd|mt. juliet|37122,1265 N. Mt. Juliet Rd.,Mt. Juliet,37122,36.188905039932,-86.511963163203,census,address (exact)
@@ -455,6 +458,7 @@ key,street,city,zip,lat,lon,source,precision
 300 pleasant grove rd|mt. juliet|37122,300 Pleasant Grove Rd.,Mt. Juliet,37122,36.178134158509,-86.51261897855,census,address (exact)
 301 west main street|watertown|37184,301 West Main Street,Watertown,37184,36.099404403591,-86.137180657716,census,address (exact)
 3015 kingston cir n|mt. juliet|37122,3015 Kingston Cir N,Mt. Juliet,37122,36.166369040189,-86.503302930831,census,address (exact)
+304 hill st|lebanon|37087,304 Hill St,Lebanon,37087,36.211262188917,-86.296236216397,census,address (exact)
 3045 nichols vale ln|mt. juliet|37122,3045 Nichols Vale Ln,Mt. Juliet,37122,36.224949010276,-86.531743248764,census,address (exact)
 305 barton ferry ct|lebanon|37087,305 Barton Ferry Ct,Lebanon,37087,36.280313332293,-86.374920133886,census,address (exact)
 306 sunderland dr|mt. juliet|37122,306 Sunderland Dr,Mt. Juliet,37122,36.200055,-86.5186054,nominatim,city centroid
