@@ -48,6 +48,7 @@ key,street,city,zip,lat,lon,source,precision
 102 c hartman dr|lebanon|37087,102 C Hartman Dr,Lebanon,37087,36.213569515392,-86.322031793069,census,address (non_exact)
 102 public square|lebanon|37087,102 Public Square,Lebanon,37087,36.208048877205,-86.290671265643,census,address (exact)
 102 rocky rd|lebanon|37087,102 Rocky Rd,Lebanon,37087,36.214806487182,-86.32777599888,census,address (exact)
+102 s college st|lebanon|37087,102 S College St,Lebanon,37087,36.20763216932,-86.289836584362,census,address (exact)
 102 south college street|lebanon|37087,102 South College Street,Lebanon,37087,36.207636341025,-86.289837251834,census,address (exact)
 102 square|lebanon|37087,102 Square,Lebanon,37087,36.2079779,-86.2910945,nominatim,city centroid
 1020 west main street|lebanon|37087,1020 West Main Street,Lebanon,37087,36.211358701457,-86.315153265328,census,address (exact)
@@ -184,6 +185,7 @@ key,street,city,zip,lat,lon,source,precision
 1204 murfreesboro rd|lebanon|37090,1204 Murfreesboro Rd,Lebanon,37090,36.17100091397,-86.303775938754,census,address (exact)
 1207 neyland circle|hixson|37343,1207 Neyland Circle,Hixson,37343,35.1406267,-85.2327349,nominatim,city centroid
 12070 lebanon rd|mt. juliet|37122,12070 Lebanon Rd,Mt. Juliet,37122,36.230941219813,-86.528279571039,census,address (exact)
+12085 lebanon rd|mt. juliet|37122,12085 Lebanon Rd,Mt. Juliet,37122,36.231030156307,-86.528519205229,census,address (exact)
 1209 n mt juliet rd|mt. juliet|37122,1209 N Mt. Juliet Rd,Mt. Juliet,37122,36.187696100419,-86.511168211625,census,address (exact)
 121 adams lane|mt. juliet|37122,121 Adams Lane.,Mt. Juliet,37122,36.16904836323,-86.518611651582,census,address (exact)
 121 adams ln|mt. juliet|37122,121 Adams Ln,Mt. Juliet,37122,36.16904836323,-86.518611651582,census,address (exact)
@@ -749,6 +751,7 @@ key,street,city,zip,lat,lon,source,precision
 75 belinda pkwy|mt. juliet|37122,75 Belinda Pkwy,Mt. Juliet,37122,36.170460942487,-86.508046289953,census,address (exact)
 75 draper lane|lebanon|37087,75 Draper Lane,Lebanon,37087,36.203622915277,-86.262012113537,census,address (exact)
 7524 neubert springs road|knoxville|37920,7524 Neubert Springs Road,Knoxville,37920,35.897738582785,-83.874231716199,census,address (exact)
+7557 franklin rd|lebanon|37090,7557 Franklin Rd,Lebanon,37090,36.138445555725,-86.408351804339,census,address (exact)
 760 flatwoods rd|lebanon|37090,760 Flatwoods Rd,Lebanon,37090,36.073606972135,-86.353898855904,census,address (exact)
 7800 trousdale ferry pike|lebanon|37090,7800 Trousdale Ferry Pike,Lebanon,37090,36.200223139532,-86.142643486967,census,address (exact)
 791 rolling creek dr|mt. juliet|37122,791 Rolling Creek Dr,Mt. Juliet,37122,36.221125453663,-86.486412509039,census,address (exact)
