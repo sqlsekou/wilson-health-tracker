@@ -64,6 +64,7 @@ key,street,city,zip,lat,lon,source,precision
 1033 w main st|lebanon|37087,1033 W Main St,Lebanon,37087,36.212060759528,-86.317406128785,census,address (exact)
 10334 chapman highway|seymour|37865,10334 Chapman Highway,Seymour,37865,35.882585793048,-83.786845464324,census,address (exact)
 1035 n mt juliet rd|mt. juliet|37122,1035 N Mt. Juliet Rd,Mt. Juliet,37122,36.156755383267,-86.515975483807,census,address (non_exact)
+1038 murfreesboro rd|lebanon|37090,1038 Murfreesboro Rd,Lebanon,37090,36.176575109562,-86.301579586188,census,address (exact)
 1039 chatsworth dr|old hickory|37138,1039 Chatsworth Dr,Old Hickory,37138,36.212267493613,-86.574960683614,census,address (exact)
 1039 w main st|lebanon|37087,1039 W. Main St,Lebanon,37087,36.212321959897,-86.318404623137,census,address (exact)
 104 east main street|lebanon|37087,104 East Main Street,Lebanon,37087,36.207871922277,-86.290654393141,census,address (exact)
