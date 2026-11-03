@@ -1,4 +1,22 @@
 {
+  "https://wilsoncountysource.com/health-scores-wilson-county-for-november-2-2026/": {
+    "post_id": 75148,
+    "title": "Health Scores: Wilson County for November 2 2026",
+    "post_date": "2026-11-02",
+    "kind": "primary",
+    "rows_in_table": 43,
+    "rows_added": 38,
+    "scraped_at": "2026-11-03T19:57:15Z"
+  },
+  "https://wilsoncountysource.com/perfect-health-scores-for-wilson-county-november-2-2026/": {
+    "post_id": 75153,
+    "title": "Perfect Health Scores for Wilson County November 2, 2026",
+    "post_date": "2026-11-02",
+    "kind": "secondary",
+    "rows_in_table": 17,
+    "rows_added": 0,
+    "scraped_at": "2026-11-03T19:57:17Z"
+  },
   "https://wilsoncountysource.com/health-scores-wilson-county-for-october-20-2026/": {
     "post_id": 74390,
     "title": "Health Scores: Wilson County for October 20 2026",
